@@ -1,86 +1,122 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SaleMyStuffApp
 {
     public partial class Form2 : Form
     {
-        public string[] tempUserControl= new string[4];
-        public Form2()
+        static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
+        public string[] tempUserControl= new string[6];
+        public UsersClass currentUser = new UsersClass(0, "", "", "", "", "", 0);
+        public Form2(int userID)
         {
             InitializeComponent();
+            currentUser = ca.CurrentUser(userID);
+            label1.Text = $"Hello {currentUser.FirstName}";
+            label2.Text = $"Money: {currentUser.Money}";
+            label3.Text = $"Last Time Seen: {currentUser.LastLogin}";
         }
-
+        /// <summary>
+        /// Parse string from database
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>Array on numbers</returns>
+        int[] ParseMyData(string str)
+        {
+            string[] strResults = str.Split(',');
+            int[] results = new int[strResults.Length];
+            for (int i = 0; i < strResults.Length; i++)
+            {
+                results[i] = int.Parse(strResults[i]);
+            }
+            return results;
+        }
+        /// <summary>
+        /// Set the flowLayoutPanel
+        /// </summary>
+        /// <param name="field"></param>
+        private void PopulateFlowPanel(string field, int n)
+        {
+        flowLayoutPanel1.Controls.Clear();
+            if (field != "")
+            {
+                int[] tempArray = ParseMyData(field);
+                ItemsClass[] tempItemsArray = ca.GetItems(tempArray);
+                foreach (var item in tempItemsArray)
+                {
+                    var zz = new UserControl1(item, currentUser, n);
+                    flowLayoutPanel1.Controls.Add(zz);
+                }
+            }
+            else return;
+        }
+        /// <summary>
+        /// Set the flowLayoutPanel for Selling button
+        /// </summary>
+        public void PopulateSellPanel()
+        {
+            flowLayoutPanel1.Controls.Clear();
+            ItemsClass[] tempItemsArray = ca.GetItemsForSale();
+            foreach (var item in tempItemsArray)
+            {
+                if (item.Owner == currentUser.Id) continue;
+                var zz = new UserControl1(item, currentUser);
+                flowLayoutPanel1.Controls.Add(zz);
+            }
+        }
+        /// <summary>
+        /// Inventory
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button1_Click(object sender, EventArgs e)
         {
-            flowLayoutPanel1.Controls.Clear();
-            for (int i = 0; i < 1; i++)
-            {
-                tempUserControl[0] = "Black Chair";
-                tempUserControl[1] = "19.55 £";
-                tempUserControl[2] = "A lovely chair hardly have been used :D";
-                tempUserControl[3] = "Resources/blackChair.jpg";
-                var zz = new UserControl1(tempUserControl);
-                flowLayoutPanel1.Controls.Add(zz);
-            }
+            PopulateFlowPanel(currentUser.Inventory, 1);
         }
-
+        /// <summary>
+        /// Here you can buy
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button2_Click(object sender, EventArgs e)
         {
-            flowLayoutPanel1.Controls.Clear();
-            for (int i = 0; i < 2; i++)
-            {
-                tempUserControl[0] = "chair";
-                tempUserControl[1] = "19.55 £";
-                tempUserControl[2] = "A lovely chair hardly have been used :D"; 
-                tempUserControl[3] = "Resources/diningBrownChair.jpg";
-                var zz = new UserControl1(tempUserControl);
-                flowLayoutPanel1.Controls.Add(zz);
-            }
+            PopulateSellPanel();
         }
-
+        /// <summary>
+        /// History of sold items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button4_Click(object sender, EventArgs e)
         {
             flowLayoutPanel1.Controls.Clear();
-            for (int i = 0; i < 4; i++)
-            {
-                tempUserControl[0] = "chair";
-                tempUserControl[1] = "19.55 £";
-                tempUserControl[2] = "A lovely chair hardly have been used :D";
-                tempUserControl[3] = "Resources/diningBrownChair.jpg";
-                var zz = new UserControl1(tempUserControl);
-                flowLayoutPanel1.Controls.Add(zz);
-            }
-        }
 
+            MessageBox.Show($"Not implemented yet");
+        }
+        /// <summary>
+        /// Items you are selling
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button3_Click(object sender, EventArgs e)
         {
-            flowLayoutPanel1.Controls.Clear();
-            for (int i = 0; i < 3; i++)
-            {
-                tempUserControl[0] = "chair";
-                tempUserControl[1] = "19.55 £";
-                tempUserControl[2] = "A lovely chair hardly have been used :D";
-                tempUserControl[3] = "Resources/diningBrownChair.jpg";
-                var zz = new UserControl1(tempUserControl);
-                flowLayoutPanel1.Controls.Add(zz);
-            }
+            PopulateFlowPanel(currentUser.Selling, 3);
         }
-
+        /// <summary>
+        /// Items saved for later
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button5_Click(object sender, EventArgs e)
         {
-            flowLayoutPanel1.Controls.Clear();
-            for (int i = 0; i < 5; i++)
-            {
-                tempUserControl[0] = "table";
-                tempUserControl[1] = "19.55 £";
-                tempUserControl[2] = "A lovely chair hardly have been used :D";
-                tempUserControl[3] = "Resources/diningWhiteChair.jpg";
-                var zz = new UserControl1(tempUserControl);
-                flowLayoutPanel1.Controls.Add(zz);
-            }
+            PopulateFlowPanel(currentUser.Saved, 5);
         }
-
+        /// <summary>
+        /// settings...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button6_Click(object sender, EventArgs e)
         {
             Form3 form3 = new Form3();

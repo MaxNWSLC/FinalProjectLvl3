@@ -1,15 +1,16 @@
 ﻿namespace SaleMyStuffApp
 {
-    class ItemsClass
+    public class ItemsClass
     {
         int id;
         string name;
-        string price;
+        decimal price;
         string info;//short description
         string image;
-        string state;//the state of the item for User like: forSale, sold, inventory    ??? not sure about this one
+        string state;//the state of the item for User like: forSale, sold
+        int owner;//the owner of the Item
 
-        public ItemsClass(int id, string name, string price, string info, string image, string state)
+        public ItemsClass(int id, string name, decimal price, string info, string image, string state, int owner)
         {
             this.id = id;
             this.name = name;
@@ -17,13 +18,15 @@
             this.info = info;
             this.image = image;
             this.state = state;
+            this.owner = owner;
         }
 
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
-        public string Price { get => price; set => price = value; }
+        public decimal Price { get => price; set => price = value; }
         public string Info { get => info; set => info = value; }
         public string Image { get => image; set => image = value; }
         public string State { get => state; set => state = value; }
+        public int Owner { get => owner; set => owner = value; }
     }
 }

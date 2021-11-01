@@ -73,7 +73,7 @@ namespace SaleMyStuffApp
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.Wheat;
-            this.button1.Location = new System.Drawing.Point(303, 113);
+            this.button1.Location = new System.Drawing.Point(176, 111);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 45);
             this.button1.TabIndex = 3;
@@ -84,7 +84,7 @@ namespace SaleMyStuffApp
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.BackColor = System.Drawing.Color.Wheat;
-            this.button2.Location = new System.Drawing.Point(167, 113);
+            this.button2.Location = new System.Drawing.Point(312, 111);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(130, 45);
             this.button2.TabIndex = 4;
