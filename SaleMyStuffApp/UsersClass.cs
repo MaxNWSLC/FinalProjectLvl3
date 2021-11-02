@@ -62,7 +62,7 @@
         /// </summary>
         /// <param name="n"></param>
         /// <returns>String of the saved items</returns>
-        public string SaveIn(string old, int n)
+        public string Save(string old, int n)
         {
             if (old.Length == 0)
                 return Saved = $"{n}";
@@ -73,7 +73,7 @@
         /// </summary>
         /// <param name="n"></param>
         /// <returns>String of the remained items</returns>
-        public string SaveOut(string old, int n)
+        public string UnSave(string old, int n)
         {
             if (old.Length == 1)
                 return Saved = "";
@@ -90,7 +90,7 @@
         /// </summary>
         /// <param name="n"></param>
         /// <returns>Inventory items as string</returns>
-        public string SetInventoryIn(string old, int n)
+        public string InventoryIn(string old, int n)
         {
             if (old.Length == 0)
                 return Inventory = $"{n}";
@@ -101,7 +101,7 @@
         /// </summary>
         /// <param name="n"></param>
         /// <returns>Inventory items as string</returns>
-        public string SetSellingOut(string old, int n)
+        public string CancelSelling(string old, int n)
         {
             if (old.Length == 1)
                 return Selling = "";

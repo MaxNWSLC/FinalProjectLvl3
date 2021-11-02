@@ -29,25 +29,15 @@ namespace SaleMyStuffApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.PriceLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.quantityLabel = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // nameLabel
             // 
@@ -69,28 +59,6 @@ namespace SaleMyStuffApp
             this.PriceLabel.TabIndex = 2;
             this.PriceLabel.Text = "Price";
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.Wheat;
-            this.button1.Location = new System.Drawing.Point(176, 111);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 45);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Buy";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.BackColor = System.Drawing.Color.Wheat;
-            this.button2.Location = new System.Drawing.Point(312, 111);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 45);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
             // infoLabel
             // 
             this.infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -101,21 +69,57 @@ namespace SaleMyStuffApp
             this.infoLabel.TabIndex = 5;
             this.infoLabel.Text = "Description of the Item";
             // 
-            // label1
+            // quantityLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(847, 121);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 28);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Quantity: 1";
+            this.quantityLabel.AutoSize = true;
+            this.quantityLabel.Location = new System.Drawing.Point(831, 128);
+            this.quantityLabel.Name = "quantityLabel";
+            this.quantityLabel.Size = new System.Drawing.Size(123, 28);
+            this.quantityLabel.TabIndex = 6;
+            this.quantityLabel.Text = "Quantity: 1";
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.BackColor = System.Drawing.Color.Wheat;
+            this.button2.Image = global::SaleMyStuffApp.Properties.Resources.smallsave;
+            this.button2.Location = new System.Drawing.Point(312, 111);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 45);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Save";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.BackColor = System.Drawing.Color.Wheat;
+            this.button1.Image = global::SaleMyStuffApp.Properties.Resources.smallbuy;
+            this.button1.Location = new System.Drawing.Point(176, 111);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 45);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Buy";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Linen;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.quantityLabel);
             this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -140,6 +144,6 @@ namespace SaleMyStuffApp
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label infoLabel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label quantityLabel;
     }
 }

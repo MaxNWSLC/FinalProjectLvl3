@@ -8,23 +8,6 @@ namespace SaleMyStuffApp
     {
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         public UsersClass currentUser = new UsersClass(0, "", "", "", "", "", 0);
-        public EventHandler MoneyChanged;
-        decimal money;
-        decimal Money
-        {
-            get { return currentUser.Money; }
-            set
-            {
-                if (money != value)
-                {
-                    money = value;
-                    if (MoneyChanged != null)
-                    {
-                        zzz();
-                    }
-                }
-            }
-        }
         public Form2(int userID)
         {
             InitializeComponent();
@@ -32,10 +15,6 @@ namespace SaleMyStuffApp
             label1.Text = $"Hello {currentUser.FirstName}";
             label2.Text = $"{currentUser.Money}£";
             label3.Text = $"Last Time Seen: Not implemented yet";
-        }
-        void zzz()
-        {
-            label2.Text = $"{money}£";
         }
 
         /// <summary>

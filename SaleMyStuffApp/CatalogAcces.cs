@@ -13,6 +13,7 @@ namespace SaleMyStuffApp
             this.connectionString = connectionString;
         }
         public string ConnectionString { get => connectionString; set => connectionString = value; }
+
         /// <summary>
         /// Check wether Login and pass coincide
         /// </summary>
