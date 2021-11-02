@@ -5,6 +5,7 @@ namespace SaleMyStuffApp
 {
     public partial class Form1 : Form
     {
+        
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         public Form1()
         {

@@ -101,6 +101,56 @@ namespace SaleMyStuffApp
             }
         }
         /// <summary>
+        /// Buy the Item
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="userId"></param>
+        public void WriteItemInInventory(string str, int uId)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"UPDATE usersTable SET inventory = @newInventory WHERE id = @id";
+                command.Parameters.AddWithValue("@id", uId);
+                command.Parameters.AddWithValue("@newInventory", str);
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
+        }
+        /// <summary>
+        /// Set the Money
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="userId"></param>
+        public void SetMoney(decimal newMoney, int uId)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"UPDATE usersTable SET money = @newMoney WHERE id = @id";
+                command.Parameters.AddWithValue("@id", uId);
+                command.Parameters.AddWithValue("@newMoney", newMoney);
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
+        }
+        /// <summary>
         /// UnSave the Item
         /// </summary>
         /// <param name="itemId"></param>
@@ -114,6 +164,56 @@ namespace SaleMyStuffApp
                 command.CommandText = @"UPDATE usersTable SET saved = @newSave WHERE id = @id";
                 command.Parameters.AddWithValue("@id", uId);
                 command.Parameters.AddWithValue("@newSave", newSave);
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
+        }
+        /// <summary>
+        /// Cancel item from sale
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="userId"></param>
+        public void UnSaleTheItem(string newSale, int uId)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"UPDATE usersTable SET selling = @newSale WHERE id = @id";
+                command.Parameters.AddWithValue("@id", uId);
+                command.Parameters.AddWithValue("@newSale", newSale);
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
+        }
+        /// <summary>
+        /// UnSave the Item
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="userId"></param>
+        public void DeleteItemFromSelling(int uId)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"UPDATE itemsTable SET state = @newState WHERE id = @id";
+                command.Parameters.AddWithValue("@id", uId);
+                command.Parameters.AddWithValue("@newState", "NotForSale");
                 try
                 {
                     int count = command.ExecuteNonQuery();

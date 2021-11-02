@@ -7,21 +7,42 @@ namespace SaleMyStuffApp
     public partial class Form2 : Form
     {
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
-        public string[] tempUserControl= new string[6];
         public UsersClass currentUser = new UsersClass(0, "", "", "", "", "", 0);
+        public EventHandler MoneyChanged;
+        decimal money;
+        decimal Money
+        {
+            get { return currentUser.Money; }
+            set
+            {
+                if (money != value)
+                {
+                    money = value;
+                    if (MoneyChanged != null)
+                    {
+                        zzz();
+                    }
+                }
+            }
+        }
         public Form2(int userID)
         {
             InitializeComponent();
             currentUser = ca.CurrentUser(userID);
             label1.Text = $"Hello {currentUser.FirstName}";
-            label2.Text = $"Money: {currentUser.Money}";
-            label3.Text = $"Last Time Seen: {currentUser.LastLogin}";
+            label2.Text = $"{currentUser.Money}£";
+            label3.Text = $"Last Time Seen: Not implemented yet";
         }
+        void zzz()
+        {
+            label2.Text = $"{money}£";
+        }
+
         /// <summary>
-        /// Parse string from database
+        /// change the string into an int[]
         /// </summary>
         /// <param name="str"></param>
-        /// <returns>Array on numbers</returns>
+        /// <returns>Array of int[]</returns>
         int[] ParseMyData(string str)
         {
             string[] strResults = str.Split(',');
@@ -38,7 +59,7 @@ namespace SaleMyStuffApp
         /// <param name="field"></param>
         private void PopulateFlowPanel(string field, int n)
         {
-        flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel1.Controls.Clear();
             if (field != "")
             {
                 int[] tempArray = ParseMyData(field);
