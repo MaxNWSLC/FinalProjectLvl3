@@ -93,6 +93,16 @@ namespace SaleMyStuffApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap diningBrownChair {
             get {
                 object obj = ResourceManager.GetObject("diningBrownChair", resourceCulture);
@@ -286,6 +296,36 @@ namespace SaleMyStuffApp.Properties {
         internal static System.Drawing.Bitmap smallcancel {
             get {
                 object obj = ResourceManager.GetObject("smallcancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap smallclose {
+            get {
+                object obj = ResourceManager.GetObject("smallclose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap smallHistory {
+            get {
+                object obj = ResourceManager.GetObject("smallHistory", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap smallMain {
+            get {
+                object obj = ResourceManager.GetObject("smallMain", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

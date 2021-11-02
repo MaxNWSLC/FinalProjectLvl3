@@ -30,5 +30,10 @@ namespace SaleMyStuffApp
                 form2.ShowDialog();
             }
         }
+
+        private void closeForm_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

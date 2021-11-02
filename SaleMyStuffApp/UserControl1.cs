@@ -63,14 +63,14 @@ namespace SaleMyStuffApp
                 string newInventory = currentUser.InventoryIn(currentUser.Inventory, currentItem.Id);
                 ca.SetMoney(currentUser.Money, currentUser.Id);
                 ca.WriteItemInInventory(newInventory, currentUser.Id);
+                //
+                //Need to send money to the seller
+                //
 
                 //accesing parent form(Form2) to change the label that show user's Money
                 Form2 form2;
                 form2 = (Form2)this.FindForm();
                 form2.label2.Text = $"{currentUser.Money}£";
-                //
-                //Need to send money to the seller
-                //
                 this.Dispose(Visible);
             }
             else
@@ -108,7 +108,8 @@ namespace SaleMyStuffApp
 
         private void ButtonSell_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"Sell Button is Not implemented yet");
+            Form4 sellForm = new Form4(currentUser, currentItem);
+            sellForm.ShowDialog();
         }
     }
 }
