@@ -62,23 +62,23 @@
         /// </summary>
         /// <param name="n"></param>
         /// <returns>String of the saved items</returns>
-        public string Save(string old, int n)
+        public string Save(int n)
         {
-            if (old.Length == 0)
+            if (Saved.Length == 0)
                 return Saved = $"{n}";
-            return Saved = $"{old},{n}";
+            return Saved = $"{Saved},{n}";
         }
         /// <summary>
         /// Removes int N(itemId) from the Saved string
         /// </summary>
         /// <param name="n"></param>
         /// <returns>String of the remained items</returns>
-        public string UnSave(string old, int n)
+        public string UnSave(int n)
         {
-            if (old.Length == 1)
+            if (Saved.Length == 1)
                 return Saved = "";
             string takeOut = $"{n},";
-            string str = old.Replace(takeOut, "");
+            string str = Saved.Replace(takeOut, "");
             if (str[0] == ',')
                 str.Remove(0);
             if (str[str.Length - 1] == ',')
@@ -86,32 +86,61 @@
             return Saved = str;
         }
         /// <summary>
-        /// Ads int N(itemId) in the Inventory string
+        /// Removes int N(itemId) from Inventory
         /// </summary>
-        /// <param name="n"></param>
-        /// <returns>Inventory items as string</returns>
-        public string InventoryIn(string old, int n)
+        /// <param name="n">Id of the Item to take out</param>
+        /// <param name="old">String of the inventory</param>
+        /// <returns>String of the remained items</returns>
+        public string InventoryOut(int n)
         {
-            if (old.Length == 0)
-                return Inventory = $"{n}";
-            return Inventory = $"{old},{n}";
+            if (Inventory.Length == 1)
+                return Inventory = "";
+            string takeOut = $"{n},";
+            string str = Inventory.Replace(takeOut, "");
+            if (str[0] == ',')
+                str.Remove(0);
+            if (str[str.Length - 1] == ',')
+                str.Remove(str.Length - 1);
+            return Inventory = str;
         }
         /// <summary>
         /// Ads int N(itemId) in the Inventory string
         /// </summary>
         /// <param name="n"></param>
         /// <returns>Inventory items as string</returns>
-        public string CancelSelling(string old, int n)
+        public string InventoryIn(int n)
         {
-            if (old.Length == 1)
+            if (Inventory.Length == 0)
+                return Inventory = $"{n}";
+            return Inventory = $"{Inventory},{n}";
+        }
+        /// <summary>
+        /// Remove item from selling
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns>Inventory items as string</returns>
+        public string CancelSelling(int n)
+        {
+            if (Selling.Length == 1)
                 return Selling = "";
             string takeOut = $"{n},";
-            string str = old.Replace(takeOut, "");
+            string str = Selling.Replace(takeOut, "");
             if (str[0] == ',')
                 str.Remove(0);
             if (str[str.Length - 1] == ',')
                 str.Remove(str.Length - 1);
             return Selling = str;
+        }
+        /// <summary>
+        /// Ads int N(itemId) in the Inventory string
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns>Inventory items as string</returns>
+        public string AddSelling(int n)
+        {
+            if (Selling.Length == 0)
+                return Selling = $"{n}";
+            return Selling = $"{Selling},{n}";
         }
     }
 }

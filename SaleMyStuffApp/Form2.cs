@@ -36,7 +36,7 @@ namespace SaleMyStuffApp
         /// Set the flowLayoutPanel
         /// </summary>
         /// <param name="field"></param>
-        private void PopulateFlowPanel(string field, int n)
+        public void PopulateFlowPanel(string field, int n)
         {
             flowLayoutPanel1.Controls.Clear();
             if (field != "")
@@ -91,8 +91,6 @@ namespace SaleMyStuffApp
         private void Button4_Click(object sender, EventArgs e)
         {
             flowLayoutPanel1.Controls.Clear();
-
-            MessageBox.Show($"Not implemented yet");
         }
         /// <summary>
         /// Items you are selling

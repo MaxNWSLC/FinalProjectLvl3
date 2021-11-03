@@ -76,37 +76,13 @@ namespace SaleMyStuffApp
             }
             return result;
         }
-        /// <summary>
-        /// Save the Item
-        /// </summary>
-        /// <param name="itemId"></param>
-        /// <param name="userId"></param>
-        public void SaveTheItem(string newSave, int uId)
-        {
-            using (var Connection = new SQLiteConnection(ConnectionString))
-            {
-                Connection.Open();
-                var command = Connection.CreateCommand();
-                command.CommandText = @"UPDATE usersTable SET saved = @newSave WHERE id = @id";
-                command.Parameters.AddWithValue("@id", uId);
-                command.Parameters.AddWithValue("@newSave", newSave);
-                try
-                {
-                    int count = command.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                Connection.Close();
-            }
-        }
+        
         /// <summary>
         /// Buy the Item
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="userId"></param>
-        public void WriteItemInInventory(string str, int uId)
+        public void SetInventory(string str, int uId)
         {
             using (var Connection = new SQLiteConnection(ConnectionString))
             {
@@ -152,11 +128,11 @@ namespace SaleMyStuffApp
             }
         }
         /// <summary>
-        /// UnSave the Item
+        /// Save/Unsave the Item
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="userId"></param>
-        public void UnSaveTheItem(string newSave, int uId)
+        public void SetSaved(string newSave, int uId)
         {
             using (var Connection = new SQLiteConnection(ConnectionString))
             {
@@ -177,11 +153,11 @@ namespace SaleMyStuffApp
             }
         }
         /// <summary>
-        /// Cancel item from sale
+        /// Set salling field in user table
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="userId"></param>
-        public void UnSaleTheItem(string newSale, int uId)
+        public void SetSelling(string newSale, int uId)
         {
             using (var Connection = new SQLiteConnection(ConnectionString))
             {
@@ -202,11 +178,11 @@ namespace SaleMyStuffApp
             }
         }
         /// <summary>
-        /// UnSave the Item
+        /// update the state of the Item to: "NotForSale" or "Selling"
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="userId"></param>
-        public void DeleteItemFromSelling(int uId)
+        public void SetState(string newState, int uId)
         {
             using (var Connection = new SQLiteConnection(ConnectionString))
             {
@@ -214,7 +190,57 @@ namespace SaleMyStuffApp
                 var command = Connection.CreateCommand();
                 command.CommandText = @"UPDATE itemsTable SET state = @newState WHERE id = @id";
                 command.Parameters.AddWithValue("@id", uId);
-                command.Parameters.AddWithValue("@newState", "NotForSale");
+                command.Parameters.AddWithValue("@newState", newState);
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
+        }//SetOwner
+        /// <summary>
+        /// update the tempPrice
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="userId"></param>
+        public void SetOwner(int cuId, int ciId)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"UPDATE itemsTable SET owner = @newOwner WHERE id = @id";
+                command.Parameters.AddWithValue("@id", ciId);
+                command.Parameters.AddWithValue("@newOwner", cuId);
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
+        }
+        /// <summary>
+        /// update the tempPrice
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="userId"></param>
+        public void SetTempPrice(decimal price, int uId)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"UPDATE itemsTable SET tempPrice = @newPrice WHERE id = @id";
+                command.Parameters.AddWithValue("@id", uId);
+                command.Parameters.AddWithValue("@newPrice", price);
                 try
                 {
                     int count = command.ExecuteNonQuery();
@@ -242,7 +268,6 @@ namespace SaleMyStuffApp
                     var command = Connection.CreateCommand();
                     command.CommandText = @"SELECT * FROM itemsTable WHERE id = @ids";
                     command.Parameters.AddWithValue("@ids", ids[i]);
-
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -253,7 +278,8 @@ namespace SaleMyStuffApp
                                                     info: reader.GetString(3),
                                                     image: reader.GetString(4),
                                                     state: reader.GetString(5),
-                                                    owner: reader.GetInt32(6)));
+                                                    owner: reader.GetInt32(6),
+                                                    tempPrice: reader.GetDecimal(7)));
                         }
                     }
                 }
@@ -284,7 +310,8 @@ namespace SaleMyStuffApp
                                                 info: reader.GetString(3),
                                                 image: reader.GetString(4),
                                                 state: reader.GetString(5),
-                                                owner: reader.GetInt32(6)));
+                                                owner: reader.GetInt32(6),
+                                                tempPrice: reader.GetDecimal(7)));
                     }
                 }
                 Connection.Close();

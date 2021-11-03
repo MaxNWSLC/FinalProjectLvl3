@@ -8,20 +8,20 @@ namespace SaleMyStuffApp
     {
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
 
-        string newSave;
-        readonly UsersClass currentUser;
-        readonly ItemsClass currentItem;
+        readonly UsersClass cu;//Current User
+        readonly ItemsClass ci;//Current Item
         public UserControl1(ItemsClass item, UsersClass user , int buttonSet = 2)
         {
             InitializeComponent();
-            nameLabel.Text = item.Name;
-            PriceLabel.Text = $"{item.Price}£";
-            infoLabel.Text = item.Info;
-            pictureBox1.Image = Image.FromFile($"Resources/{item.Image}");
+            ci = item;
+            cu = user;
 
-            currentItem = item;
-            currentUser = user;
+            nameLabel.Text = ci.Name;
+            PriceLabel.Text = ci.TempPrice == 0 ? $"{ci.Price}£" : $"{ci.TempPrice}£";
+            infoLabel.Text = ci.Info;
+            pictureBox1.Image = Image.FromFile($"Resources/{ci.Image}");
 
+            //set the buttons
             switch (buttonSet)
             {
                 case 1://inventory
@@ -37,6 +37,8 @@ namespace SaleMyStuffApp
                     button2.Visible = false;
                     break;
                 case 5://saved items
+                    if (ci.State != "Selling")
+                        button1.Enabled = false;
                     button1.Text = "Buy";
                     button1.Click += ButtonBuy_Click;
                     button2.Text = "UnSave";
@@ -45,7 +47,7 @@ namespace SaleMyStuffApp
                     break;
                 default://items user can buy or save
                     button1.Click += ButtonBuy_Click;
-                    if (user.Saved.Contains(item.Id.ToString()))
+                    if (cu.Saved.Contains(ci.Id.ToString()))
                     {
                         button2.Text = "Saved";
                         button2.Image = Image.FromFile($"Resources/smallsaved.png");
@@ -57,30 +59,34 @@ namespace SaleMyStuffApp
 
         private void ButtonBuy_Click(object sender, EventArgs e)
         {
-            if (currentUser.Money >= currentItem.Price)//check if the user have enought Money
+            decimal price = ci.TempPrice == 0 ? ci.Price : ci.TempPrice;
+            if (cu.Money >= price)//check if the user have enought Money
             {
-                currentUser.Money -= currentItem.Price;
-                string newInventory = currentUser.InventoryIn(currentUser.Inventory, currentItem.Id);
-                ca.SetMoney(currentUser.Money, currentUser.Id);
-                ca.WriteItemInInventory(newInventory, currentUser.Id);
-                //
-                //Need to send money to the seller
-                //
-
+                cu.Money -= price;
+                string newInventory = cu.InventoryIn(ci.Id);
+                ca.SetInventory(newInventory, cu.Id);
+                ca.SetMoney(cu.Money, cu.Id);
+                //sendMoney to oldowner
+                int oldOwner = ci.Owner;
+                UsersClass owner = ca.CurrentUser(oldOwner);
+                decimal tm = owner.Money + price;
+                ca.SetMoney(tm, oldOwner);
+                //set newOwner
+                ca.SetOwner(cu.Id, ci.Id);
                 //accesing parent form(Form2) to change the label that show user's Money
                 Form2 form2;
                 form2 = (Form2)this.FindForm();
-                form2.label2.Text = $"{currentUser.Money}£";
+                form2.label2.Text = $"{cu.Money}£";
                 this.Dispose(Visible);
             }
             else
-                MessageBox.Show("Looks like You do not have enought Money :(");
+                MessageBox.Show("No money?\nNo Honey!");
         }
 
         private void ButtonUnSave_Click(object sender, EventArgs e )
         {
-            newSave = currentUser.UnSave(currentUser.Saved, currentItem.Id);
-            ca.UnSaveTheItem(newSave, currentUser.Id);
+            string newSave = cu.UnSave(ci.Id);
+            ca.SetSaved(newSave, cu.Id);
             this.Dispose(Visible);
         }
 
@@ -90,26 +96,29 @@ namespace SaleMyStuffApp
                 MessageBox.Show("You already saved this Item.");
             else
             {
-                newSave = currentUser.Save(currentUser.Saved, currentItem.Id);
-                ca.SaveTheItem(newSave, currentUser.Id);
+                string newSave = cu.Save(ci.Id);
+                ca.SetSaved(newSave, cu.Id);
                 this.button2.Text = "Saved";
             }
         }
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            string newSelling = currentUser.CancelSelling(currentUser.Selling, currentItem.Id);
-            string newInventory = currentUser.InventoryIn(currentUser.Inventory, currentItem.Id);
-            ca.WriteItemInInventory(newInventory, currentUser.Id);
-            ca.UnSaleTheItem(newSelling, currentItem.Id);
-            ca.DeleteItemFromSelling(currentUser.Id);
+            string newSelling = cu.CancelSelling(ci.Id);
+            string newInventory = cu.InventoryIn(ci.Id);
+            ca.SetInventory(newInventory, cu.Id);
+            ca.SetSelling(newSelling, cu.Id);
+            ca.SetState("NotForSale", cu.Id);
+            //reset the tempPrice
+            ca.SetTempPrice(0, ci.Id);
             this.Dispose(Visible);
         }
 
         private void ButtonSell_Click(object sender, EventArgs e)
         {
-            Form4 sellForm = new Form4(currentUser, currentItem);
+            Form4 sellForm = new Form4(cu, ci);
             sellForm.ShowDialog();
+            this.Dispose(Visible);
         }
     }
 }
