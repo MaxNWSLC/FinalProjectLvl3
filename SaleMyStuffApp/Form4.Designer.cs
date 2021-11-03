@@ -31,7 +31,7 @@ namespace SaleMyStuffApp
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form4));
             this.SellButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.CancelSellButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.nameLabel = new System.Windows.Forms.Label();
@@ -73,26 +73,26 @@ namespace SaleMyStuffApp
             // 
             // CancelButton
             // 
-            this.CancelButton.BackColor = System.Drawing.Color.Wheat;
-            this.CancelButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CancelButton.FlatAppearance.BorderSize = 0;
-            this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F);
-            this.CancelButton.Image = global::SaleMyStuffApp.Properties.Resources.smallcancel;
-            this.CancelButton.Location = new System.Drawing.Point(325, 0);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(325, 80);
-            this.CancelButton.TabIndex = 6;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CancelButton.UseVisualStyleBackColor = false;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.CancelSellButton.BackColor = System.Drawing.Color.Wheat;
+            this.CancelSellButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.CancelSellButton.FlatAppearance.BorderSize = 0;
+            this.CancelSellButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelSellButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F);
+            this.CancelSellButton.Image = global::SaleMyStuffApp.Properties.Resources.smallcancel;
+            this.CancelSellButton.Location = new System.Drawing.Point(325, 0);
+            this.CancelSellButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.CancelSellButton.Name = "CancelButton";
+            this.CancelSellButton.Size = new System.Drawing.Size(325, 80);
+            this.CancelSellButton.TabIndex = 6;
+            this.CancelSellButton.Text = "Cancel";
+            this.CancelSellButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CancelSellButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CancelSellButton.UseVisualStyleBackColor = false;
+            this.CancelSellButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.CancelButton);
+            this.panel1.Controls.Add(this.CancelSellButton);
             this.panel1.Controls.Add(this.SellButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 420);
@@ -199,7 +199,7 @@ namespace SaleMyStuffApp
             this.closeForm.Size = new System.Drawing.Size(30, 25);
             this.closeForm.TabIndex = 2;
             this.closeForm.TabStop = false;
-            this.closeForm.Click += new System.EventHandler(this.closeForm_Click);
+            this.closeForm.Click += new System.EventHandler(this.CloseForm_Click);
             // 
             // pictureBox2
             // 
@@ -258,7 +258,7 @@ namespace SaleMyStuffApp
         #endregion
 
         private System.Windows.Forms.Button SellButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button CancelSellButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label nameLabel;

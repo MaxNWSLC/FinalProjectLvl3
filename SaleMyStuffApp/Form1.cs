@@ -31,7 +31,7 @@ namespace SaleMyStuffApp
             }
         }
 
-        private void closeForm_Click(object sender, EventArgs e)
+        private void CloseForm_Click(object sender, EventArgs e)
         {
             this.Close();
         }

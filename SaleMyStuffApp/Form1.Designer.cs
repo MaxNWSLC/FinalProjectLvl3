@@ -172,7 +172,7 @@ namespace SaleMyStuffApp
             this.closeForm.Size = new System.Drawing.Size(30, 25);
             this.closeForm.TabIndex = 2;
             this.closeForm.TabStop = false;
-            this.closeForm.Click += new System.EventHandler(this.closeForm_Click);
+            this.closeForm.Click += new System.EventHandler(this.CloseForm_Click);
             // 
             // pictureBox2
             // 

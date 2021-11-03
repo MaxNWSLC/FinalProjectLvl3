@@ -7,13 +7,13 @@ namespace SaleMyStuffApp
     public partial class Form2 : Form
     {
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
-        public UsersClass currentUser = new UsersClass(0, "", "", "", "", "", 0);
+        public UsersClass cu = new UsersClass(0, "", "", "", "", "", 0);
         public Form2(int userID)
         {
             InitializeComponent();
-            currentUser = ca.CurrentUser(userID);
-            label1.Text = $"Hello {currentUser.FirstName}";
-            label2.Text = $"{currentUser.Money}£";
+            cu = ca.CurrentUser(userID);
+            label1.Text = $"Hello {cu.FirstName}";
+            label2.Text = $"{cu.Money}£";
             label3.Text = $"Last Time Seen: Not implemented yet";
         }
 
@@ -45,7 +45,7 @@ namespace SaleMyStuffApp
                 ItemsClass[] tempItemsArray = ca.GetItems(tempArray);
                 foreach (var item in tempItemsArray)
                 {
-                    var zz = new UserControl1(item, currentUser, n);
+                    var zz = new UserControl1(item, cu, n);
                     flowLayoutPanel1.Controls.Add(zz);
                 }
             }
@@ -60,8 +60,8 @@ namespace SaleMyStuffApp
             ItemsClass[] tempItemsArray = ca.GetItemsForSale();
             foreach (var item in tempItemsArray)
             {
-                if (item.Owner == currentUser.Id) continue;
-                var zz = new UserControl1(item, currentUser);
+                if (item.Owner == cu.Id) continue;
+                var zz = new UserControl1(item, cu);
                 flowLayoutPanel1.Controls.Add(zz);
             }
         }
@@ -72,7 +72,7 @@ namespace SaleMyStuffApp
         /// <param name="e"></param>
         private void Button1_Click(object sender, EventArgs e)
         {
-            PopulateFlowPanel(currentUser.Inventory, 1);
+            PopulateFlowPanel(cu.Inventory, 1);
         }
         /// <summary>
         /// Here you can buy
@@ -101,7 +101,7 @@ namespace SaleMyStuffApp
         /// <param name="e"></param>
         private void Button3_Click(object sender, EventArgs e)
         {
-            PopulateFlowPanel(currentUser.Selling, 3);
+            PopulateFlowPanel(cu.Selling, 3);
         }
         /// <summary>
         /// Items saved for later
@@ -110,7 +110,7 @@ namespace SaleMyStuffApp
         /// <param name="e"></param>
         private void Button5_Click(object sender, EventArgs e)
         {
-            PopulateFlowPanel(currentUser.Saved, 5);
+            PopulateFlowPanel(cu.Saved, 5);
         }
         /// <summary>
         /// settings...
@@ -123,7 +123,7 @@ namespace SaleMyStuffApp
             form3.ShowDialog();
         }
 
-        private void closeForm_Click(object sender, EventArgs e)
+        private void CloseForm_Click(object sender, EventArgs e)
         {
             this.Close();
         }
