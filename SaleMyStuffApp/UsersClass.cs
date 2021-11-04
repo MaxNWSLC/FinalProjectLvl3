@@ -45,6 +45,25 @@
             this.pass = pass;
         }
 
+        public UsersClass(string login)
+        {
+            this.login = login;
+        }
+
+        public UsersClass(int id)
+        {
+            this.id = id;
+        }
+
+        public UsersClass(string login, string pass, string dob, string firstName, string lastName)
+        {
+            this.login = login;
+            this.pass = pass;
+            this.dob = dob;
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
         public int Id { get => id; set => id = value; }
         public string Login { get => login; set => login = value; }
         public string Pass { get => pass; set => pass = value; }

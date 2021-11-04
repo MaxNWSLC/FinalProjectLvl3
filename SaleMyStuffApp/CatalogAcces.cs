@@ -13,7 +13,35 @@ namespace SaleMyStuffApp
             this.connectionString = connectionString;
         }
         public string ConnectionString { get => connectionString; set => connectionString = value; }
+        /// <summary>
+        /// Check if the login exist
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        public bool CheckLogin(string login)
+        {
+            bool check = false;
+            UsersClass checkUser = new UsersClass(login);
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"SELECT id FROM usersTable WHERE login = @login";
+                command.Parameters.AddWithValue("@login", login);
 
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        checkUser = new UsersClass(id: reader.GetInt32(0));
+                    }
+                }
+                Connection.Close();
+            }
+            if (checkUser.Id != 0)
+                check = true;
+            return check;
+        }
         /// <summary>
         /// Check wether Login and pass coincide
         /// </summary>
@@ -27,7 +55,8 @@ namespace SaleMyStuffApp
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
-                command.CommandText = @"SELECT id, login, password FROM usersTable WHERE login = @login AND password = @password";
+                command.CommandText = @"SELECT id, login, password FROM usersTable 
+                WHERE login = @login AND password = @password";
                 command.Parameters.AddWithValue("@login", user);
                 command.Parameters.AddWithValue("@password", pass);
 
@@ -43,6 +72,118 @@ namespace SaleMyStuffApp
                 Connection.Close();
             }
             return result;
+        }
+        /// <summary>
+        /// get user from db if the dob and login are correct
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="dob"></param>
+        /// <returns></returns>
+        public UsersClass SearchUser(string user, string dob)
+        {
+            UsersClass result = new UsersClass(0, "", "");
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"SELECT id, login, password FROM usersTable 
+                WHERE login = @login AND dob = @DoB";
+                command.Parameters.AddWithValue("@login", user);
+                command.Parameters.AddWithValue("@DoB", dob);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result = new UsersClass(id: reader.GetInt32(0),
+                                                login: reader.GetString(1),
+                                                pass: reader.GetString(2));
+                    }
+                }
+                Connection.Close();
+            }
+            return result;
+        }
+        /// <summary>
+        /// register new user to the DB
+        /// </summary>
+        /// <param name="newUser"></param>
+        public void CreateUser(UsersClass newUser)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"INSERT INTO 
+                usersTable ( login, password, dob, firstName, lastName ) 
+                VALUES ( @login, @pass, @dob, @firstName, @lastName )";
+                command.Parameters.AddWithValue("@login", newUser.Login);
+                command.Parameters.AddWithValue("@pass", newUser.Pass);
+                command.Parameters.AddWithValue("@dob", newUser.Dob);
+                command.Parameters.AddWithValue("@firstName", newUser.FirstName);
+                command.Parameters.AddWithValue("@lastName", newUser.LastName);
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
+        }
+        /// <summary>
+        /// Set the user password
+        /// </summary>
+        /// <param name="newUser"></param>
+        public void SetPassword(UsersClass newUser)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"UPDATE usersTable SET password = @newPass
+                                        WHERE id = @id";
+                command.Parameters.AddWithValue("@id", newUser.Id);
+                command.Parameters.AddWithValue("@newPass", newUser.Pass);
+
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
+        }
+        /// <summary>
+        /// write lastLogin to the DB
+        /// </summary>
+        /// <param name="cu"></param>
+        public void SetLastLogin(UsersClass cu)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"UPDATE usersTable SET lastLogin = @lastLogin
+                                        WHERE id = @id";
+                command.Parameters.AddWithValue("@id", cu.Id);
+                command.Parameters.AddWithValue("@lastLogin", cu.LastLogin);
+
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
         }
         /// <summary>
         /// Get the Currently loged user
@@ -88,7 +229,8 @@ namespace SaleMyStuffApp
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
-                command.CommandText = @"UPDATE usersTable SET inventory = @newInventory WHERE id = @id";
+                command.CommandText = @"UPDATE usersTable SET inventory = @newInventory 
+                                        WHERE id = @id";
                 command.Parameters.AddWithValue("@id", uId);
                 command.Parameters.AddWithValue("@newInventory", str);
                 try
@@ -113,7 +255,8 @@ namespace SaleMyStuffApp
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
-                command.CommandText = @"UPDATE usersTable SET money = @newMoney WHERE id = @id";
+                command.CommandText = @"UPDATE usersTable SET money = @newMoney 
+                                        WHERE id = @id";
                 command.Parameters.AddWithValue("@id", uId);
                 command.Parameters.AddWithValue("@newMoney", newMoney);
                 try
@@ -138,7 +281,8 @@ namespace SaleMyStuffApp
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
-                command.CommandText = @"UPDATE usersTable SET saved = @newSave WHERE id = @id";
+                command.CommandText = @"UPDATE usersTable SET saved = @newSave 
+                                        WHERE id = @id";
                 command.Parameters.AddWithValue("@id", uId);
                 command.Parameters.AddWithValue("@newSave", newSave);
                 try
@@ -163,7 +307,8 @@ namespace SaleMyStuffApp
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
-                command.CommandText = @"UPDATE usersTable SET selling = @newSale WHERE id = @id";
+                command.CommandText = @"UPDATE usersTable SET selling = @newSale
+                                        WHERE id = @id";
                 command.Parameters.AddWithValue("@id", uId);
                 command.Parameters.AddWithValue("@newSale", newSale);
                 try
@@ -188,7 +333,8 @@ namespace SaleMyStuffApp
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
-                command.CommandText = @"UPDATE itemsTable SET state = @newState WHERE id = @id";
+                command.CommandText = @"UPDATE itemsTable SET state = @newState 
+                                        WHERE id = @id";
                 command.Parameters.AddWithValue("@id", ciId);
                 command.Parameters.AddWithValue("@newState", newState);
                 try
@@ -213,7 +359,8 @@ namespace SaleMyStuffApp
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
-                command.CommandText = @"UPDATE itemsTable SET owner = @newOwner WHERE id = @id";
+                command.CommandText = @"UPDATE itemsTable SET owner = @newOwner 
+                                        WHERE id = @id";
                 command.Parameters.AddWithValue("@id", ciId);
                 command.Parameters.AddWithValue("@newOwner", cuId);
                 try
@@ -238,7 +385,8 @@ namespace SaleMyStuffApp
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
-                command.CommandText = @"UPDATE itemsTable SET tempPrice = @newPrice WHERE id = @id";
+                command.CommandText = @"UPDATE itemsTable SET tempPrice = @newPrice 
+                                        WHERE id = @id";
                 command.Parameters.AddWithValue("@id", uId);
                 command.Parameters.AddWithValue("@newPrice", price);
                 try

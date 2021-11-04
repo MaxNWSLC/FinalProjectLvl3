@@ -14,7 +14,9 @@ namespace SaleMyStuffApp
             cu = ca.CurrentUser(userID);
             label1.Text = $"Hello {cu.FirstName}";
             label2.Text = $"{cu.Money}£";
-            label3.Text = $"Last Time Seen: Not implemented yet";
+            if (cu.LastLogin == "0")
+                label3.Visible = false;
+            label3.Text = $"Last Time Seen: {cu.LastLogin}";
         }
 
         /// <summary>
@@ -130,6 +132,8 @@ namespace SaleMyStuffApp
 
         private void CloseForm_Click(object sender, EventArgs e)
         {
+            cu.LastLogin = DateTime.Now.ToLongDateString();
+            ca.SetLastLogin(cu);
             this.Close();
         }
     }

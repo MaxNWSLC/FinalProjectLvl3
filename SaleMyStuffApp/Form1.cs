@@ -35,5 +35,17 @@ namespace SaleMyStuffApp
         {
             this.Close();
         }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {//register form
+            Form5 regForm = new Form5("register");
+            regForm.ShowDialog();
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {//recover password form
+            Form5 recForm = new Form5("recover");
+            recForm.ShowDialog();
+        }
     }
 }

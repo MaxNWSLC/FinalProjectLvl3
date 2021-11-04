@@ -52,10 +52,10 @@ namespace SaleMyStuffApp
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(237, 84);
+            this.textBox1.Location = new System.Drawing.Point(225, 84);
             this.textBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(587, 34);
+            this.textBox1.Size = new System.Drawing.Size(550, 34);
             this.textBox1.TabIndex = 0;
             // 
             // label1
@@ -84,10 +84,10 @@ namespace SaleMyStuffApp
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(237, 184);
+            this.textBox2.Location = new System.Drawing.Point(225, 184);
             this.textBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(587, 34);
+            this.textBox2.Size = new System.Drawing.Size(550, 34);
             this.textBox2.TabIndex = 2;
             // 
             // label3
@@ -112,6 +112,7 @@ namespace SaleMyStuffApp
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "here";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // linkLabel2
             // 
@@ -124,6 +125,7 @@ namespace SaleMyStuffApp
             this.linkLabel2.TabIndex = 7;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "here";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
             // label4
             // 
@@ -143,9 +145,9 @@ namespace SaleMyStuffApp
             this.button1.BackColor = System.Drawing.Color.Wheat;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(237, 271);
+            this.button1.Location = new System.Drawing.Point(225, 271);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(586, 69);
+            this.button1.Size = new System.Drawing.Size(550, 60);
             this.button1.TabIndex = 8;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = false;
@@ -160,14 +162,14 @@ namespace SaleMyStuffApp
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1061, 25);
+            this.panel2.Size = new System.Drawing.Size(1000, 25);
             this.panel2.TabIndex = 18;
             // 
             // closeForm
             // 
             this.closeForm.Dock = System.Windows.Forms.DockStyle.Right;
             this.closeForm.Image = global::SaleMyStuffApp.Properties.Resources.smallclose;
-            this.closeForm.Location = new System.Drawing.Point(1031, 0);
+            this.closeForm.Location = new System.Drawing.Point(970, 0);
             this.closeForm.Name = "closeForm";
             this.closeForm.Size = new System.Drawing.Size(30, 25);
             this.closeForm.TabIndex = 2;
@@ -199,7 +201,7 @@ namespace SaleMyStuffApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Linen;
-            this.ClientSize = new System.Drawing.Size(1061, 636);
+            this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.linkLabel2);
