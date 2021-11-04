@@ -201,9 +201,9 @@ namespace SaleMyStuffApp
                 }
                 Connection.Close();
             }
-        }//SetOwner
+        }
         /// <summary>
-        /// update the tempPrice
+        /// Set the new owner
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="userId"></param>

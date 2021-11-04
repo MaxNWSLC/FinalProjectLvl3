@@ -141,6 +141,7 @@ namespace SaleMyStuffApp
             // 
             this.button6.BackColor = System.Drawing.Color.Wheat;
             this.button6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button6.Enabled = false;
             this.button6.FlatAppearance.BorderSize = 0;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);

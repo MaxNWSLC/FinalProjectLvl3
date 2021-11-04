@@ -24,6 +24,13 @@ namespace SaleMyStuffApp
         /// <returns>Array of int[]</returns>
         int[] ParseMyData(string str)
         {
+            if (str.Contains(",,"))
+                str = str.Replace(",,", ",");
+            if (str[0] == ',')
+                str = str.Remove(0, 1);
+            if (str.Length > 1 && str[str.Length - 1] == ',')
+                str = str.Remove(str.Length - 1, 1);
+
             string[] strResults = str.Split(',');
             int[] results = new int[strResults.Length];
             for (int i = 0; i < strResults.Length; i++)

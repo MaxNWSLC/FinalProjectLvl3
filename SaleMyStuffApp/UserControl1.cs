@@ -71,8 +71,13 @@ namespace SaleMyStuffApp
                 UsersClass owner = ca.CurrentUser(oldOwner);
                 decimal tm = owner.Money + price;
                 ca.SetMoney(tm, oldOwner);
+                //remove from selling of the prev owner
+                ca.SetSelling(owner.CancelSelling(ci.Id), owner.Id);
                 //set newOwner
                 ca.SetOwner(cu.Id, ci.Id);
+                //if saved=>unsave when buy
+                if (cu.Saved.Contains($"{ci.Id}"))
+                    ca.SetSaved(cu.UnSave(ci.Id), cu.Id);
                 //accesing parent form(Form2) to change the label that show user's Money
                 Form2 form2;
                 form2 = (Form2)this.FindForm();
@@ -92,13 +97,19 @@ namespace SaleMyStuffApp
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (button2.Text == "Saved")
-                MessageBox.Show("You already saved this Item.");
+            if (button2.Text == "Saved") 
+            {
+                string newSave = cu.UnSave(ci.Id);
+                ca.SetSaved(newSave, cu.Id);
+                this.button2.Text = "Save";
+                button2.Image = Image.FromFile($"Resources/smallsave.png");
+            }
             else
             {
                 string newSave = cu.Save(ci.Id);
                 ca.SetSaved(newSave, cu.Id);
                 this.button2.Text = "Saved";
+                button2.Image = Image.FromFile($"Resources/smallsaved.png");
             }
         }
 

@@ -75,14 +75,15 @@
         /// <returns>String of the remained items</returns>
         public string UnSave(int n)
         {
-            if (Saved.Length == 1)
+            if (Saved.Length <= 2)
                 return Saved = "";
-            string takeOut = $"{n},";
-            string str = Saved.Replace(takeOut, "");
+            string str = Saved.Replace($"{n}", "");
+            if (str.Contains(",,"))
+                str = str.Replace(",,", ",");
             if (str[0] == ',')
-                str.Remove(0);
-            if (str[str.Length - 1] == ',')
-                str.Remove(str.Length - 1);
+                str = str.Remove(0, 1);
+            if (str.Length > 1 && str[str.Length - 1] == ',')
+                str = str.Remove(str.Length - 1, 1);
             return Saved = str;
         }
         /// <summary>
@@ -93,14 +94,15 @@
         /// <returns>String of the remained items</returns>
         public string InventoryOut(int n)
         {
-            if (Inventory.Length == 1)
+            if (Inventory.Length <= 2)
                 return Inventory = "";
-            string takeOut = $"{n},";
-            string str = Inventory.Replace(takeOut, "");
+            string str = Inventory.Replace($"{n}", "");
+            if (str.Contains(",,"))
+                str = str.Replace(",,", ",");
             if (str[0] == ',')
-                str.Remove(0);
-            if (str[str.Length - 1] == ',')
-                str.Remove(str.Length - 1);
+                str = str.Remove(0);
+            if (str.Length > 1 && str[str.Length - 1] == ',')
+                str = str.Remove(str.Length - 1);
             return Inventory = str;
         }
         /// <summary>
@@ -121,14 +123,15 @@
         /// <returns>Inventory items as string</returns>
         public string CancelSelling(int n)
         {
-            if (Selling.Length == 1)
+            if (Selling.Length <= 2)
                 return Selling = "";
-            string takeOut = $"{n},";
-            string str = Selling.Replace(takeOut, "");
+            string str = Selling.Replace($"{n}", "");
+            if (str.Contains(",,"))
+                str = str.Replace(",,", ",");
             if (str[0] == ',')
-                str.Remove(0);
-            if (str[str.Length - 1] == ',')
-                str.Remove(str.Length - 1);
+                str = str.Remove(0);
+            if (str.Length > 1 && str[str.Length - 1] == ',')
+                str = str.Remove(str.Length - 1);
             return Selling = str;
         }
         /// <summary>
