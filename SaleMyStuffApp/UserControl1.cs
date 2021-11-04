@@ -62,10 +62,12 @@ namespace SaleMyStuffApp
             decimal price = ci.TempPrice == 0 ? ci.Price : ci.TempPrice;
             if (cu.Money >= price)//check if the user have enought Money
             {
+                //take the money
                 cu.Money -= price;
+                ca.SetMoney(cu.Money, cu.Id);
+                //put in inventory
                 string newInventory = cu.InventoryIn(ci.Id);
                 ca.SetInventory(newInventory, cu.Id);
-                ca.SetMoney(cu.Money, cu.Id);
                 //sendMoney to oldowner
                 int oldOwner = ci.Owner;
                 UsersClass owner = ca.CurrentUser(oldOwner);
@@ -73,6 +75,8 @@ namespace SaleMyStuffApp
                 ca.SetMoney(tm, oldOwner);
                 //remove from selling of the prev owner
                 ca.SetSelling(owner.CancelSelling(ci.Id), owner.Id);
+                //set notForSale
+                ca.SetState("NotForSale", ci.Id);
                 //set newOwner
                 ca.SetOwner(cu.Id, ci.Id);
                 //if saved=>unsave when buy

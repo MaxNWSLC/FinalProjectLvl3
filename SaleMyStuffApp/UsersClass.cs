@@ -69,6 +69,21 @@
             return Saved = $"{Saved},{n}";
         }
         /// <summary>
+        /// Make sure there are not too many comas
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private string StringCheck(string str)
+        {
+            if (str.Contains(",,"))
+                str = str.Replace(",,", ",");
+            if (str[0] == ',')
+                str = str.Remove(0, 1);
+            if (str.Length > 1 && str[str.Length - 1] == ',')
+                str = str.Remove(str.Length - 1, 1);
+            return str;
+        }
+        /// <summary>
         /// Removes int N(itemId) from the Saved string
         /// </summary>
         /// <param name="n"></param>
@@ -78,13 +93,7 @@
             if (Saved.Length <= 2)
                 return Saved = "";
             string str = Saved.Replace($"{n}", "");
-            if (str.Contains(",,"))
-                str = str.Replace(",,", ",");
-            if (str[0] == ',')
-                str = str.Remove(0, 1);
-            if (str.Length > 1 && str[str.Length - 1] == ',')
-                str = str.Remove(str.Length - 1, 1);
-            return Saved = str;
+            return Saved = StringCheck(str);
         }
         /// <summary>
         /// Removes int N(itemId) from Inventory
@@ -97,13 +106,7 @@
             if (Inventory.Length <= 2)
                 return Inventory = "";
             string str = Inventory.Replace($"{n}", "");
-            if (str.Contains(",,"))
-                str = str.Replace(",,", ",");
-            if (str[0] == ',')
-                str = str.Remove(0);
-            if (str.Length > 1 && str[str.Length - 1] == ',')
-                str = str.Remove(str.Length - 1);
-            return Inventory = str;
+            return Inventory = StringCheck(str);
         }
         /// <summary>
         /// Ads int N(itemId) in the Inventory string
@@ -126,13 +129,7 @@
             if (Selling.Length <= 2)
                 return Selling = "";
             string str = Selling.Replace($"{n}", "");
-            if (str.Contains(",,"))
-                str = str.Replace(",,", ",");
-            if (str[0] == ',')
-                str = str.Remove(0);
-            if (str.Length > 1 && str[str.Length - 1] == ',')
-                str = str.Remove(str.Length - 1);
-            return Selling = str;
+            return Selling = StringCheck(str);
         }
         /// <summary>
         /// Ads int N(itemId) in the Inventory string

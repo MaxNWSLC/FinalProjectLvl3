@@ -180,16 +180,16 @@ namespace SaleMyStuffApp
         /// <summary>
         /// update the state of the Item to: "NotForSale" or "Selling"
         /// </summary>
-        /// <param name="itemId"></param>
-        /// <param name="userId"></param>
-        public void SetState(string newState, int uId)
+        /// <param name="newState">String of new state</param>
+        /// <param name="ciId">Current Item</param>
+        public void SetState(string newState, int ciId)
         {
             using (var Connection = new SQLiteConnection(ConnectionString))
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
                 command.CommandText = @"UPDATE itemsTable SET state = @newState WHERE id = @id";
-                command.Parameters.AddWithValue("@id", uId);
+                command.Parameters.AddWithValue("@id", ciId);
                 command.Parameters.AddWithValue("@newState", newState);
                 try
                 {
