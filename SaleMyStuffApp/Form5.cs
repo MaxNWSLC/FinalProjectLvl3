@@ -23,6 +23,7 @@ namespace SaleMyStuffApp
                 label6.Text = "New Password";
                 label2.Text = "New Password";
                 nameBox.Enabled = false;
+                nameBox.PasswordChar = '*';
                 passBox1.Enabled = false;
                 CreateButton.Text = "Apply";
                 CreateButton.Click += ApplyButton_Click;
