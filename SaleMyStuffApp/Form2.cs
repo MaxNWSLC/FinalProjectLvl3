@@ -6,6 +6,7 @@ namespace SaleMyStuffApp
 {
     public partial class Form2 : Form
     {
+        #region Init
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         public UsersClass cu = new UsersClass(0, "", "", "", "", "", 0);
         public Form2(int userID)
@@ -18,7 +19,8 @@ namespace SaleMyStuffApp
                 label3.Visible = false;
             label3.Text = $"Last Time Seen: {cu.LastLogin}";
         }
-
+        #endregion
+        #region Methods
         /// <summary>
         /// change the string into an int[]
         /// </summary>
@@ -48,14 +50,14 @@ namespace SaleMyStuffApp
         public void PopulateFlowPanel(string field, int n)
         {
             flowLayoutPanel1.Controls.Clear();
-            if (field != "")
+            if (!String.IsNullOrEmpty(field))//field != ""
             {
                 int[] tempArray = ParseMyData(field);
                 ItemsClass[] tempItemsArray = ca.GetItems(tempArray);
                 foreach (var item in tempItemsArray)
                 {
-                    var zz = new UserControl1(item, cu, n);
-                    flowLayoutPanel1.Controls.Add(zz);
+                    var uc = new UserControl1(item, cu, null, n);
+                    flowLayoutPanel1.Controls.Add(uc);
                 }
             }
             else return;
@@ -63,78 +65,117 @@ namespace SaleMyStuffApp
         /// <summary>
         /// Set the flowLayoutPanel for Selling button
         /// </summary>
-        public void PopulateSellPanel()
+        void PopulateSellPanel()
         {
             flowLayoutPanel1.Controls.Clear();
             ItemsClass[] tempItemsArray = ca.GetItemsForSale();
             foreach (var item in tempItemsArray)
             {
                 if (item.Owner == cu.Id) continue;
-                var zz = new UserControl1(item, cu);
+                var uc = new UserControl1(item, cu);
+                flowLayoutPanel1.Controls.Add(uc);
+            }
+        }
+        /// <summary>
+        /// Populate the flowLayoutPanel for History buttons
+        /// </summary>
+        /// <param name="n"></param>
+        void PopulateHistory(int n)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            //get the buying history from db for current user
+            History[] his = n == 4 ? ca.GetSellHistory(cu.Id) : ca.GetBuyHistory(cu.Id);
+            //create the array of items from the DB
+            List<int> numItems = new List<int>();
+            foreach (var item in his)
+            {
+                numItems.Add(item.Item);
+            }
+            ItemsClass[] hisItems = ca.GetItems(numItems.ToArray());
+            //populate the flowpanel with UserControls
+            for (int i = 0; i < his.Length; i++)
+            {
+                var zz = new UserControl1(hisItems[i], null, his[i], n);
                 flowLayoutPanel1.Controls.Add(zz);
             }
+        }
+        #endregion
+        #region Buttons
+        /// <summary>
+        /// user can buy
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void Button2_Click(object sender, EventArgs e)
+        {
+            PopulateSellPanel();
         }
         /// <summary>
         /// Inventory
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button1_Click(object sender, EventArgs e)
+        void Button1_Click(object sender, EventArgs e)
         {
             PopulateFlowPanel(cu.Inventory, 1);
         }
         /// <summary>
-        /// Here you can buy
+        /// user is selling
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button2_Click(object sender, EventArgs e)
+        void Button3_Click(object sender, EventArgs e)
         {
-            PopulateSellPanel();
+            PopulateFlowPanel(cu.Selling, 2);
         }
         /// <summary>
-        /// History of sold items
+        /// saved items
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button4_Click(object sender, EventArgs e)
+        void Button6_Click(object sender, EventArgs e)
         {
-            flowLayoutPanel1.Controls.Clear();
+            PopulateFlowPanel(cu.Saved, 3);
         }
         /// <summary>
-        /// Items you are selling
+        /// Sell history
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button3_Click(object sender, EventArgs e)
+        void Button4_Click(object sender, EventArgs e)
         {
-            PopulateFlowPanel(cu.Selling, 3);
+            PopulateHistory(4);
         }
         /// <summary>
-        /// Items saved for later
+        /// Buy history
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button5_Click(object sender, EventArgs e)
+        void Button5_Click(object sender, EventArgs e)
         {
-            PopulateFlowPanel(cu.Saved, 5);
+            PopulateHistory(5);
         }
         /// <summary>
         /// settings...
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button6_Click(object sender, EventArgs e)
+        void Button7_Click(object sender, EventArgs e)
         {
             Form3 form3 = new Form3();
             form3.ShowDialog();
         }
-
-        private void CloseForm_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Close button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void CloseForm_Click(object sender, EventArgs e)
         {
             cu.LastLogin = DateTime.Now.ToLongDateString();
             ca.SetLastLogin(cu);
             this.Close();
         }
+        #endregion
     }
 }

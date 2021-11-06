@@ -30,58 +30,34 @@ namespace SaleMyStuffApp
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.closeForm = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.appIco = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeForm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appIco)).BeginInit();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Linen;
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1250, 100);
-            this.panel1.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.closeForm);
-            this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1250, 25);
-            this.panel3.TabIndex = 18;
             // 
             // closeForm
             // 
             this.closeForm.Dock = System.Windows.Forms.DockStyle.Right;
-            this.closeForm.Image = global::SaleMyStuffApp.Properties.Resources.smallclose;
+            this.closeForm.Image = ((System.Drawing.Image)(resources.GetObject("closeForm.Image")));
             this.closeForm.Location = new System.Drawing.Point(1220, 0);
             this.closeForm.Name = "closeForm";
             this.closeForm.Size = new System.Drawing.Size(30, 25);
@@ -89,15 +65,15 @@ namespace SaleMyStuffApp
             this.closeForm.TabStop = false;
             this.closeForm.Click += new System.EventHandler(this.CloseForm_Click);
             // 
-            // pictureBox2
+            // appIco
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox2.Image = global::SaleMyStuffApp.Properties.Resources.smallMain;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(30, 25);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.appIco.Dock = System.Windows.Forms.DockStyle.Left;
+            this.appIco.Image = ((System.Drawing.Image)(resources.GetObject("appIco.Image")));
+            this.appIco.Location = new System.Drawing.Point(0, 0);
+            this.appIco.Name = "appIco";
+            this.appIco.Size = new System.Drawing.Size(30, 25);
+            this.appIco.TabIndex = 1;
+            this.appIco.TabStop = false;
             // 
             // label4
             // 
@@ -137,30 +113,36 @@ namespace SaleMyStuffApp
             this.label1.TabIndex = 0;
             this.label1.Text = "Hello, UserName";
             // 
-            // button6
+            // panel1
             // 
-            this.button6.BackColor = System.Drawing.Color.Wheat;
-            this.button6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button6.Enabled = false;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button6.Image = global::SaleMyStuffApp.Properties.Resources.settings1;
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(0, 626);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(200, 74);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Settings";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            this.panel1.BackColor = System.Drawing.Color.Linen;
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1250, 100);
+            this.panel1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.closeForm);
+            this.panel3.Controls.Add(this.appIco);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1250, 25);
+            this.panel3.TabIndex = 18;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Linen;
             this.panel2.Controls.Add(this.button6);
+            this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button3);
@@ -172,6 +154,45 @@ namespace SaleMyStuffApp
             this.panel2.Size = new System.Drawing.Size(200, 700);
             this.panel2.TabIndex = 1;
             // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Wheat;
+            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.button6.Image = global::SaleMyStuffApp.Properties.Resources.saved;
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.Location = new System.Drawing.Point(0, 470);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(200, 94);
+            this.button6.TabIndex = 6;
+            this.button6.Text = "Saved";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Wheat;
+            this.button7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button7.Enabled = false;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.button7.Image = global::SaleMyStuffApp.Properties.Resources.settings;
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.Location = new System.Drawing.Point(0, 626);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(200, 74);
+            this.button7.TabIndex = 5;
+            this.button7.Text = "Settings";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.Wheat;
@@ -179,13 +200,13 @@ namespace SaleMyStuffApp
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button5.Image = global::SaleMyStuffApp.Properties.Resources.saved1;
+            this.button5.Image = global::SaleMyStuffApp.Properties.Resources.history;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.Location = new System.Drawing.Point(0, 376);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(200, 94);
             this.button5.TabIndex = 4;
-            this.button5.Text = "Saved";
+            this.button5.Text = "Buy History";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = false;
@@ -195,17 +216,16 @@ namespace SaleMyStuffApp
             // 
             this.button4.BackColor = System.Drawing.Color.Wheat;
             this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.Enabled = false;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button4.Image = global::SaleMyStuffApp.Properties.Resources.history1;
+            this.button4.Image = global::SaleMyStuffApp.Properties.Resources.history;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.Location = new System.Drawing.Point(0, 282);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(200, 94);
             this.button4.TabIndex = 3;
-            this.button4.Text = "History";
+            this.button4.Text = "Sell History";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = false;
@@ -218,7 +238,7 @@ namespace SaleMyStuffApp
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button3.Image = global::SaleMyStuffApp.Properties.Resources.sale;
+            this.button3.Image = global::SaleMyStuffApp.Properties.Resources.sell;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.Location = new System.Drawing.Point(0, 188);
             this.button3.Name = "button3";
@@ -237,7 +257,7 @@ namespace SaleMyStuffApp
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button2.Image = global::SaleMyStuffApp.Properties.Resources.buy1;
+            this.button2.Image = global::SaleMyStuffApp.Properties.Resources.buy;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.Location = new System.Drawing.Point(0, 94);
             this.button2.Name = "button2";
@@ -256,7 +276,7 @@ namespace SaleMyStuffApp
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button1.Image = global::SaleMyStuffApp.Properties.Resources.inventory1;
+            this.button1.Image = global::SaleMyStuffApp.Properties.Resources.inventory;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
@@ -294,12 +314,12 @@ namespace SaleMyStuffApp
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sale My Stuff";
+            ((System.ComponentModel.ISupportInitialize)(this.closeForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appIco)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.closeForm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -315,13 +335,14 @@ namespace SaleMyStuffApp
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox closeForm;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox appIco;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button6;
     }
 }

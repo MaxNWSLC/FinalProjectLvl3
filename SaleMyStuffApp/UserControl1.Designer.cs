@@ -29,10 +29,11 @@ namespace SaleMyStuffApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl1));
             this.nameLabel = new System.Windows.Forms.Label();
             this.PriceLabel = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
-            this.quantityLabel = new System.Windows.Forms.Label();
+            this.timeLabel = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -69,20 +70,21 @@ namespace SaleMyStuffApp
             this.infoLabel.TabIndex = 5;
             this.infoLabel.Text = "Description of the Item";
             // 
-            // quantityLabel
+            // timeLabel
             // 
-            this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Location = new System.Drawing.Point(831, 128);
-            this.quantityLabel.Name = "quantityLabel";
-            this.quantityLabel.Size = new System.Drawing.Size(123, 28);
-            this.quantityLabel.TabIndex = 6;
-            this.quantityLabel.Text = "Quantity: 1";
+            this.timeLabel.AutoSize = true;
+            this.timeLabel.Location = new System.Drawing.Point(171, 128);
+            this.timeLabel.Name = "timeLabel";
+            this.timeLabel.Size = new System.Drawing.Size(58, 28);
+            this.timeLabel.TabIndex = 6;
+            this.timeLabel.Text = "time";
+            this.timeLabel.Visible = false;
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.BackColor = System.Drawing.Color.Wheat;
-            this.button2.Image = global::SaleMyStuffApp.Properties.Resources.smallsave;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.Location = new System.Drawing.Point(312, 111);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(130, 45);
@@ -95,7 +97,7 @@ namespace SaleMyStuffApp
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.Wheat;
-            this.button1.Image = global::SaleMyStuffApp.Properties.Resources.smallbuy;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.Location = new System.Drawing.Point(176, 111);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 45);
@@ -118,7 +120,7 @@ namespace SaleMyStuffApp
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Linen;
-            this.Controls.Add(this.quantityLabel);
+            this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -143,6 +145,6 @@ namespace SaleMyStuffApp
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label infoLabel;
-        private System.Windows.Forms.Label quantityLabel;
+        private System.Windows.Forms.Label timeLabel;
     }
 }

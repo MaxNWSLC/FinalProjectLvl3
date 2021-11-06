@@ -20,7 +20,7 @@ namespace SaleMyStuffApp
             string recPrice = $"{ci.Price * (decimal)1.10:0.00}";
             PriceLabel.Text = $"Recommended selling price: {recPrice}£";
             priceTextBox.Text = recPrice;
-            pictureBox1.Image = Image.FromFile($"Resources/{ci.Image}");
+            pictureBox1.Image = Image.FromFile($"Resources/Images/{ci.Image}");
             infoTextBox.Text = ci.Info;
         }
         private void SellButton_Click(object sender, EventArgs e)

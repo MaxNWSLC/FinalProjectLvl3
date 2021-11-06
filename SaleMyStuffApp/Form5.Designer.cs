@@ -253,7 +253,7 @@ namespace SaleMyStuffApp
             this.CreateButton.FlatAppearance.BorderSize = 0;
             this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.CreateButton.Image = global::SaleMyStuffApp.Properties.Resources.saved1;
+            this.CreateButton.Image = global::SaleMyStuffApp.Properties.Resources.saved;
             this.CreateButton.Location = new System.Drawing.Point(0, 0);
             this.CreateButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.CreateButton.Name = "CreateButton";

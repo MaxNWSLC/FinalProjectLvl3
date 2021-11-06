@@ -75,7 +75,7 @@
         public string Saved { get => saved; set => saved = value; }
         public string LastLogin { get => lastLogin; set => lastLogin = value; }
         public decimal Money { get => money; set => money = value; }
-
+        #region Methods
         /// <summary>
         /// Ads int N(itemId) in the Saved string
         /// </summary>
@@ -161,5 +161,6 @@
                 return Selling = $"{n}";
             return Selling = $"{Selling},{n}";
         }
+        #endregion
     }
 }
