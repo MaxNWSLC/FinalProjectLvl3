@@ -6,20 +6,35 @@ namespace SaleMyStuffApp
 {
     public partial class UserControl1 : UserControl
     {
+        #region Init
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
 
-        readonly UsersClass cu;//Current User
-        readonly ItemsClass ci;//Current Item
-        public UserControl1(ItemsClass item, UsersClass user , int buttonSet = 2)
+        readonly UsersClass cu;
+        readonly ItemsClass ci;
+        readonly History hs;
+        public UserControl1(ItemsClass item, UsersClass user , History history = null, int buttonSet = 0)
         {
             InitializeComponent();
-            ci = item;
             cu = user;
+            ci = item;
+            hs = history;
 
-            nameLabel.Text = ci.Name;
-            PriceLabel.Text = ci.TempPrice == 0 ? $"{ci.Price}£" : $"{ci.TempPrice}£";
-            infoLabel.Text = ci.Info;
-            pictureBox1.Image = Image.FromFile($"Resources/{ci.Image}");
+            if (buttonSet == 4| buttonSet == 5)
+            {
+                nameLabel.Text = ci.Name;
+                PriceLabel.Text = $"{hs.Price}£";
+                infoLabel.Text = ci.Info;
+                timeLabel.Visible = true;
+                timeLabel.Text = $"Transaction made on: {hs.Date}";
+                pictureBox1.Image = Image.FromFile($"Resources/Images/{ci.Image}");
+            }
+            else
+            {
+                nameLabel.Text = ci.Name;
+                PriceLabel.Text = ci.TempPrice == 0 ? $"{ci.Price}£" : $"{ci.TempPrice}£";
+                infoLabel.Text = ci.Info;
+                pictureBox1.Image = Image.FromFile($"Resources/Images/{ci.Image}");
+            }
 
             //set the buttons
             switch (buttonSet)
@@ -27,37 +42,48 @@ namespace SaleMyStuffApp
                 case 1://inventory
                     button1.Text = "Sell";
                     button1.Click += ButtonSell_Click;
-                    button1.Image = Image.FromFile($"Resources/smallsell.png");
+                    button1.Image = Image.FromFile($"Resources/Icons/smallsell.png");
                     button2.Visible = false;
                     break;
-                case 3://items user sells
+                case 2://items user sells
                     button1.Text = "Cancel";
                     button1.Click += ButtonCancel_Click;
-                    button1.Image = Image.FromFile($"Resources/smallcancel.png");
+                    button1.Image = Image.FromFile($"Resources/Icons/smallcancel.png");
                     button2.Visible = false;
                     break;
-                case 5://saved items
+                case 3://saved items
                     if (ci.State != "Selling")
                         button1.Enabled = false;
                     button1.Text = "Buy";
                     button1.Click += ButtonBuy_Click;
                     button2.Text = "UnSave";
                     button2.Click += ButtonUnSave_Click;
-                    button2.Image = Image.FromFile($"Resources/smallunsave.png");
+                    button2.Image = Image.FromFile($"Resources/Icons/smallunsave.png");
+                    break;
+                case 4://sell history
+                    button1.Visible = false;
+                    button2.Visible = false;
+
+                    break;
+                case 5://buy history
+                    button1.Visible = false;
+                    button2.Visible = false;
+
                     break;
                 default://items user can buy or save
                     button1.Click += ButtonBuy_Click;
                     if (cu.Saved.Contains(ci.Id.ToString()))
                     {
                         button2.Text = "Saved";
-                        button2.Image = Image.FromFile($"Resources/smallsaved.png");
+                        button2.Image = Image.FromFile($"Resources/Icons/smallsaved.png");
                     }
                     button2.Click += ButtonSave_Click;
                     break;
             }
         }
-
-        private void ButtonBuy_Click(object sender, EventArgs e)
+        #endregion
+        #region Buttons
+        void ButtonBuy_Click(object sender, EventArgs e)
         {
             decimal price = ci.TempPrice == 0 ? ci.Price : ci.TempPrice;
             if (cu.Money >= price)//check if the user have enought Money
@@ -86,54 +112,58 @@ namespace SaleMyStuffApp
                 Form2 form2;
                 form2 = (Form2)this.FindForm();
                 form2.label2.Text = $"{cu.Money}£";
+                //write transaction in history
+                History transaction = new History(0, cu.Id, oldOwner, ci.Id, price, $"{DateTime.Now.ToLongDateString()}-{DateTime.Now.ToShortTimeString()}");
+                ca.WriteTransaction(transaction);
+
                 this.Dispose(Visible);
             }
             else
                 MessageBox.Show("No money?\nNo Honey!");
         }
 
-        private void ButtonUnSave_Click(object sender, EventArgs e )
+        void ButtonUnSave_Click(object sender, EventArgs e )
         {
             string newSave = cu.UnSave(ci.Id);
             ca.SetSaved(newSave, cu.Id);
             this.Dispose(Visible);
         }
 
-        private void ButtonSave_Click(object sender, EventArgs e)
+        void ButtonSave_Click(object sender, EventArgs e)
         {
             if (button2.Text == "Saved") 
             {
                 string newSave = cu.UnSave(ci.Id);
                 ca.SetSaved(newSave, cu.Id);
                 this.button2.Text = "Save";
-                button2.Image = Image.FromFile($"Resources/smallsave.png");
+                button2.Image = Image.FromFile($"Resources/Icons/smallsave.png");
             }
             else
             {
                 string newSave = cu.Save(ci.Id);
                 ca.SetSaved(newSave, cu.Id);
                 this.button2.Text = "Saved";
-                button2.Image = Image.FromFile($"Resources/smallsaved.png");
+                button2.Image = Image.FromFile($"Resources/Icons/smallsaved.png");
             }
         }
 
-        private void ButtonCancel_Click(object sender, EventArgs e)
+        void ButtonCancel_Click(object sender, EventArgs e)
         {
             string newSelling = cu.CancelSelling(ci.Id);
             string newInventory = cu.InventoryIn(ci.Id);
             ca.SetInventory(newInventory, cu.Id);
             ca.SetSelling(newSelling, cu.Id);
             ca.SetState("NotForSale", cu.Id);
-            //reset the tempPrice
             ca.SetTempPrice(0, ci.Id);
             this.Dispose(Visible);
         }
 
-        private void ButtonSell_Click(object sender, EventArgs e)
+        void ButtonSell_Click(object sender, EventArgs e)
         {
             Form4 sellForm = new Form4(cu, ci);
             sellForm.ShowDialog();
             this.Dispose(Visible);
         }
+        #endregion
     }
 }

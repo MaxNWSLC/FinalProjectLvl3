@@ -13,6 +13,7 @@ namespace SaleMyStuffApp
             this.connectionString = connectionString;
         }
         public string ConnectionString { get => connectionString; set => connectionString = value; }
+        #region User
         /// <summary>
         /// Check if the login exist
         /// </summary>
@@ -297,7 +298,7 @@ namespace SaleMyStuffApp
             }
         }
         /// <summary>
-        /// Set salling field in user table
+        /// Set selling field in user table
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="userId"></param>
@@ -322,6 +323,8 @@ namespace SaleMyStuffApp
                 Connection.Close();
             }
         }
+        #endregion
+        #region Items
         /// <summary>
         /// update the state of the Item to: "NotForSale" or "Selling"
         /// </summary>
@@ -466,5 +469,95 @@ namespace SaleMyStuffApp
             }
             return result.ToArray();
         }
+        #endregion
+        #region History
+        /// <summary>
+        /// Get Seller History from DB
+        /// </summary>
+        /// <param name="uId">Current User ID</param>
+        /// <returns></returns>
+        public History[] GetSellHistory(int uId)
+        {
+            List<History> result = new List<History>();
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"SELECT * FROM history WHERE seller = @uId";
+                command.Parameters.AddWithValue("@uId", uId);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new History(id: reader.GetInt32(0),
+                                                buyer: reader.GetInt32(1),
+                                                seller: reader.GetInt32(2),
+                                                item: reader.GetInt32(3),
+                                                price: reader.GetDecimal(4),
+                                                date: reader.GetString(5)
+                                                ));
+                    }
+                }
+                Connection.Close();
+            }
+            return result.ToArray();
+        }
+        /// <summary>
+        /// Get Buyer History from DB
+        /// </summary>
+        /// <param name="uId">Current Usser ID</param>
+        /// <returns></returns>
+        public History[] GetBuyHistory(int uId)
+        {
+            List<History> result = new List<History>();
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"SELECT * FROM history WHERE buyer = @uId";
+                command.Parameters.AddWithValue("@uId", uId);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new History(id: reader.GetInt32(0),
+                                                buyer: reader.GetInt32(1),
+                                                seller: reader.GetInt32(2),
+                                                item: reader.GetInt32(3),
+                                                price: reader.GetDecimal(4),
+                                                date: reader.GetString(5)
+                                                ));
+                    }
+                }
+                Connection.Close();
+            }
+            return result.ToArray();
+        }
+        public void WriteTransaction(History nt)
+        {
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"INSERT INTO 
+                history ( buyer, seller, item, price, time) 
+                VALUES ( @buyer, @seller, @item, @price, @date)";
+                command.Parameters.AddWithValue("@buyer", nt.Buyer);
+                command.Parameters.AddWithValue("@seller", nt.Seller);
+                command.Parameters.AddWithValue("@item", nt.Item);
+                command.Parameters.AddWithValue("@price", nt.Price);
+                command.Parameters.AddWithValue("@date", nt.Date);
+                try
+                {
+                    int count = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                Connection.Close();
+            }
+        }
+        #endregion
     }
 }

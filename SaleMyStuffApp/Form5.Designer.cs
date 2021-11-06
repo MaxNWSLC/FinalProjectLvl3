@@ -137,6 +137,7 @@ namespace SaleMyStuffApp
             this.passBox1.Location = new System.Drawing.Point(50, 166);
             this.passBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.passBox1.Name = "passBox1";
+            this.passBox1.PasswordChar = '*';
             this.passBox1.Size = new System.Drawing.Size(400, 34);
             this.passBox1.TabIndex = 22;
             // 
@@ -158,6 +159,7 @@ namespace SaleMyStuffApp
             this.passBox2.Location = new System.Drawing.Point(50, 243);
             this.passBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.passBox2.Name = "passBox2";
+            this.passBox2.PasswordChar = '*';
             this.passBox2.Size = new System.Drawing.Size(400, 34);
             this.passBox2.TabIndex = 24;
             // 
@@ -251,7 +253,7 @@ namespace SaleMyStuffApp
             this.CreateButton.FlatAppearance.BorderSize = 0;
             this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.CreateButton.Image = global::SaleMyStuffApp.Properties.Resources.saved1;
+            this.CreateButton.Image = global::SaleMyStuffApp.Properties.Resources.saved;
             this.CreateButton.Location = new System.Drawing.Point(0, 0);
             this.CreateButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.CreateButton.Name = "CreateButton";

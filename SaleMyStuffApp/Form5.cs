@@ -5,6 +5,7 @@ namespace SaleMyStuffApp
 {
     public partial class Form5 : Form
     {
+        #region Init
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         UsersClass reUser = new UsersClass(0, "", "");
         public Form5(string str)
@@ -23,12 +24,41 @@ namespace SaleMyStuffApp
                 label6.Text = "New Password";
                 label2.Text = "New Password";
                 nameBox.Enabled = false;
+                nameBox.PasswordChar = '*';
                 passBox1.Enabled = false;
                 CreateButton.Text = "Apply";
                 CreateButton.Click += ApplyButton_Click;
+                CreateButton.Enabled = false;
             } else CreateButton.Click += CreateButton_Click;
         }
+        #endregion
+        private void MessageBocMethod(string str, string login = "")
+        {
+            switch (str)
+            {
+                case "notFound":
+                    MessageBox.Show($"OOops, Combinations did't been found.", "Wrong login/dob error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case "notUniq":
+                    MessageBox.Show($"Login {login} exist.\nChange the Login please.", "Dublicate login found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case "tooYoung":
+                    MessageBox.Show("You are a bit too young my friend\nOnly older than 12 years are aloud ;)", "DOB error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case "nonEqual":
+                    MessageBox.Show("Passwords must be Equal.", "Password fields error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case "empty":
+                    MessageBox.Show("Didn't you forgot something?", "Empty field found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                default:
+                    MessageBox.Show("Ooops", "Unkown Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+            }
 
+        }
+
+        #region Buttons
         private void CreateButton_Click(object sender, EventArgs e)
         {
             string login    =   LoginBox.Text;
@@ -39,27 +69,27 @@ namespace SaleMyStuffApp
             string lastName =   surnameBox.Text;
 
             //no empty fields allowed
-            if (login == "" | pass == "" | pass2 == "" | firstName == "" | lastName == "")
+            if (String.IsNullOrEmpty(login) | String.IsNullOrEmpty(pass) | String.IsNullOrEmpty(pass2) | String.IsNullOrEmpty(firstName) | String.IsNullOrEmpty(lastName))
             {
-                MessageBox.Show("Didn't you forgot something?");
+                MessageBocMethod("empty");
                 return;
             }
             //passwords must be equal
             if (pass != pass2)
             {
-                MessageBox.Show("Passwords must be Equal.");
+                MessageBocMethod("nonEqual");
                 return;
             }
             //user must be at least 12 years old
             if (DateTime.Now.Year - dateTime.Value.Year < 12)
             {
-                MessageBox.Show("You are a bit too young my friend\nOnly older than 12 years are aloud ;)");
+                MessageBocMethod("tooYoung");
                 return;
             }
             //login must be uniq
             if (ca.CheckLogin(login))
             {
-                MessageBox.Show($"Login {login} exist.\nChange the Login please.");
+                MessageBocMethod("notUniq",login);
                 return;
             }
             //finaly register the user to the db 
@@ -75,13 +105,13 @@ namespace SaleMyStuffApp
             //no empty pass
             if (pass == "" | pass2 == "")
             {
-                MessageBox.Show("Didn't you forgot something?");
+                MessageBocMethod("empty");
                 return;
             }
             //passwords must be equal
             if (pass != pass2)
             {
-                MessageBox.Show("Passwords must be Equal.");
+                MessageBocMethod("nonEqual");
                 return;
             }
             //accesissing DB
@@ -97,20 +127,20 @@ namespace SaleMyStuffApp
             //no empty login
             if (login.Length == 0)
             {
-                MessageBox.Show("Didn't you forgot something?");
+                MessageBocMethod("empty");
                 return;
             }
             //user must be at least 12 years old
             if (DateTime.Now.Year - dateTime.Value.Year < 12)
             {
-                MessageBox.Show("You are a bit too young my friend\nOnly older than 12 years are aloud ;)");
+                MessageBocMethod("tooYoung");
                 return;
             }
             //now checking combination
             reUser = ca.SearchUser(login, dob);
             if (reUser.Id == 0)
             {
-                MessageBox.Show("OOops, Combinations did't been found.");
+                MessageBocMethod("notFound");
                 return;
             }
             else
@@ -128,4 +158,5 @@ namespace SaleMyStuffApp
         private void CancelSellButton_Click(object sender, EventArgs e) {this.Close();}
         private void CloseForm_Click(object sender, EventArgs e) { this.Close(); }
     }
+    #endregion
 }

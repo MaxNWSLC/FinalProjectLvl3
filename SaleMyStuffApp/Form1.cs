@@ -11,7 +11,11 @@ namespace SaleMyStuffApp
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// login button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button1_Click(object sender, EventArgs e)
         {
             UsersClass zzz;// = new UsersClass(0, "", "");
