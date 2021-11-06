@@ -25,6 +25,7 @@ Create Account Form
 * UnSave
 * LastLogin is showing
 * Money are showing 
+* Sell History
+* Buy History
 ## What is Not working
-* History 
 * Settings
