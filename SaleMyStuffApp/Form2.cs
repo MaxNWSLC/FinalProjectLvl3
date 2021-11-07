@@ -162,7 +162,7 @@ namespace SaleMyStuffApp
         /// <param name="e"></param>
         void Button7_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
+            Form3 form3 = new Form3(cu.Id);
             form3.ShowDialog();
         }
         /// <summary>

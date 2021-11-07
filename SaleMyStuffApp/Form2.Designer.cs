@@ -30,8 +30,6 @@ namespace SaleMyStuffApp
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
-            this.closeForm = new System.Windows.Forms.PictureBox();
-            this.appIco = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,6 +37,7 @@ namespace SaleMyStuffApp
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -46,34 +45,14 @@ namespace SaleMyStuffApp
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.closeForm = new System.Windows.Forms.PictureBox();
+            this.appIco = new System.Windows.Forms.PictureBox();
+            this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appIco)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // closeForm
-            // 
-            this.closeForm.Dock = System.Windows.Forms.DockStyle.Right;
-            this.closeForm.Image = ((System.Drawing.Image)(resources.GetObject("closeForm.Image")));
-            this.closeForm.Location = new System.Drawing.Point(1220, 0);
-            this.closeForm.Name = "closeForm";
-            this.closeForm.Size = new System.Drawing.Size(30, 25);
-            this.closeForm.TabIndex = 2;
-            this.closeForm.TabStop = false;
-            this.closeForm.Click += new System.EventHandler(this.CloseForm_Click);
-            // 
-            // appIco
-            // 
-            this.appIco.Dock = System.Windows.Forms.DockStyle.Left;
-            this.appIco.Image = ((System.Drawing.Image)(resources.GetObject("appIco.Image")));
-            this.appIco.Location = new System.Drawing.Point(0, 0);
-            this.appIco.Name = "appIco";
-            this.appIco.Size = new System.Drawing.Size(30, 25);
-            this.appIco.TabIndex = 1;
-            this.appIco.TabStop = false;
             // 
             // label4
             // 
@@ -100,9 +79,9 @@ namespace SaleMyStuffApp
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(12, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 28);
+            this.label2.Size = new System.Drawing.Size(65, 28);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Bank$";
+            this.label2.Text = "Bank";
             // 
             // label1
             // 
@@ -123,7 +102,7 @@ namespace SaleMyStuffApp
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1250, 100);
+            this.panel1.Size = new System.Drawing.Size(1200, 100);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -135,7 +114,7 @@ namespace SaleMyStuffApp
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1250, 25);
+            this.panel3.Size = new System.Drawing.Size(1200, 25);
             this.panel3.TabIndex = 18;
             // 
             // panel2
@@ -153,6 +132,16 @@ namespace SaleMyStuffApp
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 700);
             this.panel2.TabIndex = 1;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(200, 100);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1000, 700);
+            this.flowLayoutPanel1.TabIndex = 2;
             // 
             // button6
             // 
@@ -177,7 +166,6 @@ namespace SaleMyStuffApp
             // 
             this.button7.BackColor = System.Drawing.Color.Wheat;
             this.button7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button7.Enabled = false;
             this.button7.FlatAppearance.BorderSize = 0;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
@@ -288,22 +276,33 @@ namespace SaleMyStuffApp
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // flowLayoutPanel1
+            // closeForm
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.DimGray;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(200, 100);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1050, 700);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.closeForm.Dock = System.Windows.Forms.DockStyle.Right;
+            this.closeForm.Image = ((System.Drawing.Image)(resources.GetObject("closeForm.Image")));
+            this.closeForm.Location = new System.Drawing.Point(1175, 0);
+            this.closeForm.Name = "closeForm";
+            this.closeForm.Size = new System.Drawing.Size(25, 25);
+            this.closeForm.TabIndex = 2;
+            this.closeForm.TabStop = false;
+            this.closeForm.Click += new System.EventHandler(this.CloseForm_Click);
+            // 
+            // appIco
+            // 
+            this.appIco.Dock = System.Windows.Forms.DockStyle.Left;
+            this.appIco.Image = ((System.Drawing.Image)(resources.GetObject("appIco.Image")));
+            this.appIco.Location = new System.Drawing.Point(0, 0);
+            this.appIco.Name = "appIco";
+            this.appIco.Size = new System.Drawing.Size(30, 25);
+            this.appIco.TabIndex = 1;
+            this.appIco.TabStop = false;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1250, 800);
+            this.ClientSize = new System.Drawing.Size(1200, 800);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -314,13 +313,13 @@ namespace SaleMyStuffApp
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sale My Stuff";
-            ((System.ComponentModel.ISupportInitialize)(this.closeForm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appIco)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.closeForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appIco)).EndInit();
             this.ResumeLayout(false);
 
         }

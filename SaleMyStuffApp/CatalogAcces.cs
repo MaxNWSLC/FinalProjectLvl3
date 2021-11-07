@@ -60,7 +60,6 @@ namespace SaleMyStuffApp
                 WHERE login = @login AND password = @password";
                 command.Parameters.AddWithValue("@login", user);
                 command.Parameters.AddWithValue("@password", pass);
-
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -73,6 +72,37 @@ namespace SaleMyStuffApp
                 Connection.Close();
             }
             return result;
+        }
+        /// <summary>
+        /// Check if pass was changed succesfuly
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="pass"></param>
+        /// <returns></returns>
+        public bool TestLogin(int uId, string pass)
+        {
+            bool ses = false;
+            UsersClass result = new UsersClass(0, "", "");
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                command.CommandText = @"SELECT id, login, password FROM usersTable WHERE id = @uId";
+                command.Parameters.AddWithValue("@uId", uId);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result = new UsersClass(id: reader.GetInt32(0),
+                                                login: reader.GetString(1),
+                                                pass: reader.GetString(2));
+                    }
+                }
+                Connection.Close();
+            }
+            if (result.Pass.Equals(pass))
+                ses = true;
+            return ses;
         }
         /// <summary>
         /// get user from db if the dob and login are correct
@@ -218,7 +248,7 @@ namespace SaleMyStuffApp
             }
             return result;
         }
-        
+
         /// <summary>
         /// Buy the Item
         /// </summary>
@@ -410,7 +440,7 @@ namespace SaleMyStuffApp
         /// <returns>ItemsClass array</returns>
         public ItemsClass[] GetItems(int[] ids)
         {
-            List <ItemsClass> result = new List<ItemsClass>();
+            List<ItemsClass> result = new List<ItemsClass>();
             using (var Connection = new SQLiteConnection(ConnectionString))
             {
                 Connection.Open();
@@ -423,7 +453,7 @@ namespace SaleMyStuffApp
                     {
                         while (reader.Read())
                         {
-                            result.Add (new ItemsClass(id: reader.GetInt32(0),
+                            result.Add(new ItemsClass(id: reader.GetInt32(0),
                                                     name: reader.GetString(1),
                                                     price: reader.GetDecimal(2),
                                                     info: reader.GetString(3),

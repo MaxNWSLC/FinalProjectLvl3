@@ -1,15 +1,51 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SaleMyStuffApp
 {
     public partial class Form1 : Form
     {
-        
+        readonly string path = @"Resources\Settings.txt";
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         public Form1()
         {
             InitializeComponent();
+            if (!File.Exists(path))
+            {// Create a file to write to.
+                string setting = $"Linen,Left";
+                File.WriteAllText(path, setting);
+            }
+            string[] settings = File.ReadAllText(path).Split(',');
+            ApplyTheme(settings);
+        }
+        void ApplyTheme(string[] settings)
+        {
+            ThemeClass theme = new ThemeClass("", System.Drawing.Color.Wheat, System.Drawing.Color.Wheat, System.Drawing.Color.Wheat, System.Drawing.Color.Wheat, System.Drawing.Color.Wheat, System.Windows.Forms.DockStyle.Left);
+            switch (settings[0])
+            {
+                case "Dark":
+                    theme.Dark();
+                    break;
+                case "Lime":
+                    theme.Lime();
+                    break;
+                case "Orange":
+                    theme.Orange();
+                    break;
+                default:
+                    theme.Linen();
+                    break;
+            }
+            //apply theme to the controls
+            Control[] primary = { panel1, label1, label2, label3, label4, linkLabel1, linkLabel2 };
+            foreach (var item in primary) item.BackColor = theme.PrimaryBack;
+            Control[] texts = { label1, label2, label3, label4, button1 };
+            foreach (var item in texts) item.ForeColor = theme.TextColor;
+            Control[] headers = { textBox1, textBox2, panel2 };
+            foreach (var item in headers) item.BackColor = theme.Header;
+            button1.BackColor = theme.Button;
         }
         /// <summary>
         /// login button
