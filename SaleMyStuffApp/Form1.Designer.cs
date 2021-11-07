@@ -53,7 +53,8 @@ namespace SaleMyStuffApp
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.ForeColor = System.Drawing.Color.Black;
             this.textBox1.Location = new System.Drawing.Point(225, 84);
             this.textBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textBox1.Name = "textBox1";
@@ -65,7 +66,7 @@ namespace SaleMyStuffApp
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DarkGray;
+            this.label1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label1.Location = new System.Drawing.Point(232, 50);
             this.label1.Name = "label1";
@@ -78,6 +79,7 @@ namespace SaleMyStuffApp
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label2.Location = new System.Drawing.Point(232, 150);
             this.label2.Name = "label2";
@@ -90,6 +92,7 @@ namespace SaleMyStuffApp
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox2.ForeColor = System.Drawing.Color.Black;
             this.textBox2.Location = new System.Drawing.Point(225, 184);
             this.textBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textBox2.Name = "textBox2";
@@ -158,10 +161,10 @@ namespace SaleMyStuffApp
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.Tomato;
+            this.button1.BackColor = System.Drawing.Color.SeaGreen;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.button1.Location = new System.Drawing.Point(225, 271);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(550, 60);
@@ -172,11 +175,12 @@ namespace SaleMyStuffApp
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Controls.Add(this.closeForm);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.ForeColor = System.Drawing.Color.Black;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1000, 25);
@@ -215,7 +219,7 @@ namespace SaleMyStuffApp
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightSalmon;
+            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SaleMyStuffApp
@@ -8,21 +8,27 @@ namespace SaleMyStuffApp
     public partial class Form1 : Form
     {
         readonly string path = @"Resources\Settings.txt";
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, 
+            Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
+        readonly Control[] headers;
+        readonly Control[] labels; 
+
         public Form1()
         {
             InitializeComponent();
-            if (!File.Exists(path))
-            {// Create a file to write to.
-                string setting = $"Linen,Left";
-                File.WriteAllText(path, setting);
-            }
-            string[] settings = File.ReadAllText(path).Split(',');
-            ApplyTheme(settings);
+            labels = new Control[] { label1, label2, label3, label4, linkLabel1, linkLabel2, panel1 };
+            headers = new Control[] { textBox1, textBox2, panel2 };
+            if (!File.Exists(path)) 
+                File.WriteAllText(path, $"Linen,Left");
+            ApplyTheme(File.ReadAllText(path).Split(','));
         }
+        /// <summary>
+        /// Apply the theme
+        /// </summary>
+        /// <param name="settings"></param>
         void ApplyTheme(string[] settings)
         {
-            ThemeClass theme = new ThemeClass("", System.Drawing.Color.Wheat, System.Drawing.Color.Wheat, System.Drawing.Color.Wheat, System.Drawing.Color.Wheat, System.Drawing.Color.Wheat, System.Windows.Forms.DockStyle.Left);
             switch (settings[0])
             {
                 case "Dark":
@@ -38,14 +44,21 @@ namespace SaleMyStuffApp
                     theme.Linen();
                     break;
             }
+            theme.Dockstyle = settings[1] == "Left" ? theme.Left() : theme.Right();
             //apply theme to the controls
-            Control[] primary = { panel1, label1, label2, label3, label4, linkLabel1, linkLabel2 };
-            foreach (var item in primary) item.BackColor = theme.PrimaryBack;
-            Control[] texts = { label1, label2, label3, label4, button1 };
-            foreach (var item in texts) item.ForeColor = theme.TextColor;
-            Control[] headers = { textBox1, textBox2, panel2 };
-            foreach (var item in headers) item.BackColor = theme.Header;
-            button1.BackColor = theme.Button;
+            this.BackColor = theme.PrimaryBack;
+            foreach (var item in labels)
+            {
+                item.BackColor = theme.PrimaryBack;
+                item.ForeColor = theme.TextColor;
+            }
+            foreach (var item in headers)
+            {
+                item.BackColor = theme.HeaderBack;
+                item.ForeColor = theme.HeaderFront;
+            }
+            button1.BackColor = theme.ButtonBack;
+            button1.ForeColor = theme.ButtonFront;
         }
         /// <summary>
         /// login button
@@ -54,19 +67,19 @@ namespace SaleMyStuffApp
         /// <param name="e"></param>
         private void Button1_Click(object sender, EventArgs e)
         {
-            UsersClass zzz;// = new UsersClass(0, "", "");
+            UsersClass userLogin;// = new UsersClass(0, "", "");
             string login = textBox1.Text;
             string pass = textBox2.Text;
 
             if (login == "") login = "test";//only for testing purposes !!!
             if (pass == "") pass = "test";//must be deleted on release stage
 
-            zzz = ca.UserLogin(login, pass);
-            if (zzz.Id == 0)
+            userLogin = ca.UserLogin(login, pass);
+            if (userLogin.Id == 0)
                 MessageBox.Show("|Ooops|");
             else
             {
-                Form2 form2 = new Form2(zzz.Id);
+                Form2 form2 = new Form2(userLogin.Id, theme);
                 form2.ShowDialog();
             }
         }
@@ -78,13 +91,13 @@ namespace SaleMyStuffApp
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {//register form
-            Form5 regForm = new Form5("register");
+            Form5 regForm = new Form5("register", theme);
             regForm.ShowDialog();
         }
 
         private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {//recover password form
-            Form5 recForm = new Form5("recover");
+            Form5 recForm = new Form5("recover", theme);
             recForm.ShowDialog();
         }
     }

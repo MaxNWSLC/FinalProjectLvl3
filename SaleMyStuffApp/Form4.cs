@@ -6,15 +6,28 @@ namespace SaleMyStuffApp
 {
     public partial class Form4 : Form
     {
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, 
+            Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         readonly UsersClass cu;
         readonly ItemsClass ci;
-        public Form4(UsersClass currentUser, ItemsClass currentItem)
+        readonly Control[] buttons;
+        readonly Control[] headers;
+        readonly Control[] labels;
+        public Form4(UsersClass currentUser, ItemsClass currentItem, ThemeClass colorTheme)
         {
             InitializeComponent();
             cu = currentUser;
             ci = currentItem;
-
+            InitForm();
+            theme = colorTheme;
+            labels = new Control[] { label1, infoLabel, nameLabel, PriceLabel, ShopPriceLabel };
+            headers = new Control[] { priceTextBox, infoTextBox, label2, panel2 };
+            buttons = new Control[] { SellButton, CancelSellButton };
+            ApplyTheme();
+        }
+        void InitForm()
+        {
             nameLabel.Text = ci.Name;
             ShopPriceLabel.Text = $"Shop price: {ci.Price}£";
             string recPrice = $"{ci.Price * (decimal)1.10:0.00}";
@@ -22,6 +35,25 @@ namespace SaleMyStuffApp
             priceTextBox.Text = recPrice;
             pictureBox1.Image = Image.FromFile($"Resources/Images/{ci.Image}");
             infoTextBox.Text = ci.Info;
+        }
+        void ApplyTheme()
+        {
+            this.BackColor = theme.PrimaryBack;
+            foreach (var item in labels)
+            {
+                item.BackColor = theme.PrimaryBack;
+                item.ForeColor = theme.TextColor;
+            }
+            foreach (var item in buttons)
+            {
+                item.BackColor = theme.ButtonBack;
+                item.ForeColor = theme.ButtonFront;
+            }
+            foreach (var item in headers)
+            {
+                item.BackColor = theme.HeaderBack;
+                item.ForeColor = theme.HeaderFront;
+            }
         }
         private void SellButton_Click(object sender, EventArgs e)
         {
