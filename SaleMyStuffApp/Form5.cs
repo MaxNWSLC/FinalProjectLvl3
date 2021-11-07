@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SaleMyStuffApp
@@ -6,30 +7,61 @@ namespace SaleMyStuffApp
     public partial class Form5 : Form
     {
         #region Init
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, 
+            Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
+        readonly Control[] disables;
+        readonly Control[] hiders;
+        readonly Control[] buttons;
+        readonly Control[] strBoxes;
+        readonly Control[] labels;
         UsersClass reUser = new UsersClass(0, "", "");
-        public Form5(string str)
+        public Form5(string str, ThemeClass colorTheme)
         {
             InitializeComponent();
+            theme = colorTheme;
+            labels = new Control[] { label1, label2, label3, label4, label6, label7 };
+            strBoxes = new Control[] { LoginBox, nameBox, surnameBox, passBox1, passBox2 };
+            buttons = new Control[] { searchButton, CreateButton, CancelSellButton };
+            disables = new Control[] { nameBox, passBox1, CreateButton, label6, label2 };
+            hiders = new Control[] { passBox2, label3, label4, surnameBox };
+            SetPanel(str);
+            ApplyTheme();
+        }
+        void ApplyTheme()
+        {
+            this.BackColor = theme.PrimaryBack;
+            foreach (var item in labels)
+            {
+                item.BackColor = theme.PrimaryBack;
+                item.ForeColor = theme.TextColor;
+            }
+            foreach (var item in buttons)
+            {
+                item.BackColor = theme.ButtonBack;
+                item.ForeColor = theme.ButtonFront;
+            }
+            foreach (var item in strBoxes)
+            {
+                item.BackColor = theme.HeaderBack;
+                item.ForeColor = theme.ButtonFront;
+            }
+        }
+        void SetPanel(string str)
+        {
             if (str.Equals("recover"))
             {
-                //hide some controls
-                //change some controls ;)
-                headerLabel.Text = "Recover Password";
                 searchButton.Visible = true;
-                passBox2.Visible = false;
-                label3.Visible = false;
-                label4.Visible = false;
-                surnameBox.Visible = false;
+                foreach (var item in hiders) item.Visible = false;
+                foreach (var item in disables) item.Enabled = false;
+                headerLabel.Text = "Recover Password";
                 label6.Text = "New Password";
                 label2.Text = "New Password";
-                nameBox.Enabled = false;
                 nameBox.PasswordChar = '*';
-                passBox1.Enabled = false;
                 CreateButton.Text = "Apply";
                 CreateButton.Click += ApplyButton_Click;
-                CreateButton.Enabled = false;
-            } else CreateButton.Click += CreateButton_Click;
+            }
+            else CreateButton.Click += CreateButton_Click;
         }
         #endregion
         private void MessageBocMethod(string str, string login = "")
@@ -61,12 +93,12 @@ namespace SaleMyStuffApp
         #region Buttons
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            string login    =   LoginBox.Text;
-            string pass    =   passBox1.Text;
-            string pass2    =   passBox2.Text;
-            string dob      =   dateTime.Text;
-            string firstName =  nameBox.Text;
-            string lastName =   surnameBox.Text;
+            string login = LoginBox.Text;
+            string pass = passBox1.Text;
+            string pass2 = passBox2.Text;
+            string dob = dateTime.Text;
+            string firstName = nameBox.Text;
+            string lastName = surnameBox.Text;
 
             //no empty fields allowed
             if (String.IsNullOrEmpty(login) | String.IsNullOrEmpty(pass) | String.IsNullOrEmpty(pass2) | String.IsNullOrEmpty(firstName) | String.IsNullOrEmpty(lastName))
@@ -89,7 +121,7 @@ namespace SaleMyStuffApp
             //login must be uniq
             if (ca.CheckLogin(login))
             {
-                MessageBocMethod("notUniq",login);
+                MessageBocMethod("notUniq", login);
                 return;
             }
             //finaly register the user to the db 
@@ -149,13 +181,15 @@ namespace SaleMyStuffApp
                 dateTime.Enabled = false;
                 passBox1.Enabled = true;
                 nameBox.Enabled = true;
+                label2.Enabled = true;
+                label6.Enabled = true;
                 passBox1.Text = reUser.Pass;
                 nameBox.Text = reUser.Pass;
                 searchButton.Enabled = false;
             }
         }
 
-        private void CancelSellButton_Click(object sender, EventArgs e) {this.Close();}
+        private void CancelSellButton_Click(object sender, EventArgs e) { this.Close(); }
         private void CloseForm_Click(object sender, EventArgs e) { this.Close(); }
     }
     #endregion

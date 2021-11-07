@@ -8,18 +8,43 @@ namespace SaleMyStuffApp
     {
         #region Init
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
-
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat,
+            Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         readonly UsersClass cu;
         readonly ItemsClass ci;
         readonly History hs;
-        public UserControl1(ItemsClass item, UsersClass user , History history = null, int buttonSet = 0)
+        readonly Control[] buttons;
+        readonly Control[] labels;
+        public UserControl1(ItemsClass item, UsersClass user , ThemeClass colorTheme,History history = null, int buttonSet = 0)
         {
             InitializeComponent();
             cu = user;
             ci = item;
             hs = history;
+            theme = colorTheme;
+            labels = new Control[] { timeLabel, infoLabel, nameLabel, PriceLabel };
+            buttons = new Control[] { button1, button2 };
+            InitHelper(buttonSet);
+            ApplyTheme();
+        }
+        void ApplyTheme()
+        {
+            this.BackColor = theme.PrimaryBack;
+            foreach (var item in labels)
+            {
+                item.BackColor = theme.PrimaryBack;
+                item.ForeColor = theme.TextColor;
+            }
+            foreach (var item in buttons)
+            {
+                item.BackColor = theme.ButtonBack;
+                item.ForeColor = theme.ButtonFront;
+            }
+        }
+        void InitHelper(int buttonSet = 0)
+        {
 
-            if (buttonSet == 4| buttonSet == 5)
+            if (buttonSet == 4 | buttonSet == 5)
             {
                 nameLabel.Text = ci.Name;
                 PriceLabel.Text = $"{hs.Price}£";
@@ -160,7 +185,7 @@ namespace SaleMyStuffApp
 
         void ButtonSell_Click(object sender, EventArgs e)
         {
-            Form4 sellForm = new Form4(cu, ci);
+            Form4 sellForm = new Form4(cu, ci, theme);
             sellForm.ShowDialog();
             this.Dispose(Visible);
         }

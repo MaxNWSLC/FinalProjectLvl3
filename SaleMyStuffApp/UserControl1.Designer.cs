@@ -64,7 +64,7 @@ namespace SaleMyStuffApp
             // 
             this.infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.infoLabel.AutoSize = true;
-            this.infoLabel.Location = new System.Drawing.Point(433, 7);
+            this.infoLabel.Location = new System.Drawing.Point(481, 7);
             this.infoLabel.Name = "infoLabel";
             this.infoLabel.Size = new System.Drawing.Size(245, 28);
             this.infoLabel.TabIndex = 5;
@@ -84,6 +84,8 @@ namespace SaleMyStuffApp
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.BackColor = System.Drawing.Color.Wheat;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.Location = new System.Drawing.Point(312, 111);
             this.button2.Name = "button2";
@@ -97,6 +99,8 @@ namespace SaleMyStuffApp
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.Wheat;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.Location = new System.Drawing.Point(176, 111);
             this.button1.Name = "button1";
@@ -130,7 +134,7 @@ namespace SaleMyStuffApp
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F);
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "UserControl1";
-            this.Size = new System.Drawing.Size(1000, 165);
+            this.Size = new System.Drawing.Size(970, 165);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -54,11 +54,12 @@ namespace SaleMyStuffApp
             // 
             // SellButton
             // 
-            this.SellButton.BackColor = System.Drawing.Color.Wheat;
+            this.SellButton.BackColor = System.Drawing.Color.Tomato;
             this.SellButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.SellButton.FlatAppearance.BorderSize = 0;
             this.SellButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SellButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.SellButton.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.SellButton.Image = global::SaleMyStuffApp.Properties.Resources.saved;
             this.SellButton.Location = new System.Drawing.Point(0, 0);
             this.SellButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
@@ -71,7 +72,7 @@ namespace SaleMyStuffApp
             this.SellButton.UseVisualStyleBackColor = false;
             this.SellButton.Click += new System.EventHandler(this.SellButton_Click);
             // 
-            // CancelButton
+            // CancelSellButton
             // 
             this.CancelSellButton.BackColor = System.Drawing.Color.Wheat;
             this.CancelSellButton.Dock = System.Windows.Forms.DockStyle.Right;
@@ -81,7 +82,7 @@ namespace SaleMyStuffApp
             this.CancelSellButton.Image = global::SaleMyStuffApp.Properties.Resources.smallcancel;
             this.CancelSellButton.Location = new System.Drawing.Point(325, 0);
             this.CancelSellButton.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.CancelSellButton.Name = "CancelButton";
+            this.CancelSellButton.Name = "CancelSellButton";
             this.CancelSellButton.Size = new System.Drawing.Size(325, 80);
             this.CancelSellButton.TabIndex = 6;
             this.CancelSellButton.Text = "Cancel";
@@ -115,6 +116,7 @@ namespace SaleMyStuffApp
             // 
             this.nameLabel.AutoSize = true;
             this.nameLabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F);
+            this.nameLabel.ForeColor = System.Drawing.Color.SeaShell;
             this.nameLabel.Location = new System.Drawing.Point(24, 62);
             this.nameLabel.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.nameLabel.Name = "nameLabel";
@@ -125,6 +127,7 @@ namespace SaleMyStuffApp
             // PriceLabel
             // 
             this.PriceLabel.AutoSize = true;
+            this.PriceLabel.ForeColor = System.Drawing.Color.SeaShell;
             this.PriceLabel.Location = new System.Drawing.Point(24, 118);
             this.PriceLabel.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.PriceLabel.Name = "PriceLabel";
@@ -136,6 +139,7 @@ namespace SaleMyStuffApp
             // 
             this.infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.infoLabel.AutoSize = true;
+            this.infoLabel.ForeColor = System.Drawing.Color.SeaShell;
             this.infoLabel.Location = new System.Drawing.Point(24, 236);
             this.infoLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.infoLabel.Name = "infoLabel";
@@ -145,6 +149,7 @@ namespace SaleMyStuffApp
             // 
             // priceTextBox
             // 
+            this.priceTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.priceTextBox.Location = new System.Drawing.Point(162, 146);
             this.priceTextBox.Name = "priceTextBox";
             this.priceTextBox.Size = new System.Drawing.Size(256, 34);
@@ -152,6 +157,7 @@ namespace SaleMyStuffApp
             // 
             // infoTextBox
             // 
+            this.infoTextBox.BackColor = System.Drawing.Color.Silver;
             this.infoTextBox.Location = new System.Drawing.Point(29, 267);
             this.infoTextBox.Name = "infoTextBox";
             this.infoTextBox.Size = new System.Drawing.Size(597, 134);
@@ -161,6 +167,7 @@ namespace SaleMyStuffApp
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.SeaShell;
             this.label1.Location = new System.Drawing.Point(24, 152);
             this.label1.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.label1.Name = "label1";
@@ -171,6 +178,7 @@ namespace SaleMyStuffApp
             // ShopPriceLabel
             // 
             this.ShopPriceLabel.AutoSize = true;
+            this.ShopPriceLabel.ForeColor = System.Drawing.Color.SeaShell;
             this.ShopPriceLabel.Location = new System.Drawing.Point(24, 90);
             this.ShopPriceLabel.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.ShopPriceLabel.Name = "ShopPriceLabel";
@@ -180,11 +188,12 @@ namespace SaleMyStuffApp
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Controls.Add(this.closeForm);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.ForeColor = System.Drawing.Color.Black;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(650, 25);
@@ -215,6 +224,7 @@ namespace SaleMyStuffApp
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(32, 2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 21);
@@ -225,7 +235,7 @@ namespace SaleMyStuffApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Linen;
+            this.BackColor = System.Drawing.Color.LightSalmon;
             this.ClientSize = new System.Drawing.Size(650, 500);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.ShopPriceLabel);
