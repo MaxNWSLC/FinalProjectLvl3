@@ -8,7 +8,7 @@ namespace SaleMyStuffApp
     public partial class Form2 : Form
     {
         #region Init
-        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat,
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat,
             Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         public UsersClass cu = new UsersClass(0, "", "", "", "", "", 0);
@@ -23,7 +23,7 @@ namespace SaleMyStuffApp
             theme = colTheme;
             labels = new Control[] { label1, label2, label3, panel1, panel2 };
             headers = new Control[] { label4, panel3 };
-            buttons = new Control[] { button1, button2, button3, button4, button5, button6, button7 };
+            buttons = new Control[] { button1, button2, button3, button4, button5, button6, button7, button8 };
             ApplyTheme();
         }
         void InitHelper()
@@ -35,8 +35,7 @@ namespace SaleMyStuffApp
             label3.Text = $"Last Time Seen: {cu.LastLogin}";
 
         }
-        #endregion
-        #region Methods
+
         /// <summary>
         /// Apply the theme
         /// </summary>
@@ -64,6 +63,9 @@ namespace SaleMyStuffApp
             flowLayoutPanel1.BackColor = theme.SecondaryBack;
             panel2.Dock = theme.Dockstyle;
         }
+        #endregion
+        #region Methods
+
         /// <summary>
         /// change the string into an int[]
         /// </summary>
@@ -86,12 +88,13 @@ namespace SaleMyStuffApp
             }
             return results;
         }
+
         /// <summary>
         /// Set the flowLayoutPanel
         /// </summary>
         /// <param name="field">string of: Inventory, Selling or Saved field</param>
         /// <param name="n">Current user Id</param>
-        public void PopulateFlowPanel(string field, int n)
+        void PopulateFlowPanel(string field, int n)
         {
             flowLayoutPanel1.Controls.Clear();
             if (!String.IsNullOrEmpty(field))//field != ""
@@ -106,6 +109,7 @@ namespace SaleMyStuffApp
             }
             else return;
         }
+
         /// <summary>
         /// Set the flowLayoutPanel for Selling button
         /// </summary>
@@ -122,6 +126,7 @@ namespace SaleMyStuffApp
                 }
             }
         }
+
         /// <summary>
         /// Populate the flowLayoutPanel for History buttons
         /// </summary>
@@ -145,8 +150,21 @@ namespace SaleMyStuffApp
                 flowLayoutPanel1.Controls.Add(zz);
             }
         }
+
+        /// <summary>
+        /// set the color of selected button
+        /// </summary>
+        /// <param name="sender"></param>
+        void SetButtonsColor(Button sender)
+        {
+            foreach (var item in buttons)
+            {
+                item.BackColor = item == sender ? theme.ButtonSelect : theme.ButtonBack;
+            }
+        }
         #endregion
         #region Buttons
+
         /// <summary>
         /// user can buy
         /// </summary>
@@ -155,7 +173,11 @@ namespace SaleMyStuffApp
         void Button2_Click(object sender, EventArgs e)
         {
             PopulateSellPanel();
+            SetButtonsColor(button2);
+            if (panel4.Visible)
+                panel4.Visible = false;
         }
+
         /// <summary>
         /// Inventory
         /// </summary>
@@ -164,7 +186,13 @@ namespace SaleMyStuffApp
         void Button1_Click(object sender, EventArgs e)
         {
             PopulateFlowPanel(cu.Inventory, 1);
+            if (panel4.Visible)
+                panel4.Visible = false;
+            SetButtonsColor(button1);
+            if (panel4.Visible)
+                panel4.Visible = false;
         }
+        
         /// <summary>
         /// user is selling
         /// </summary>
@@ -173,7 +201,11 @@ namespace SaleMyStuffApp
         void Button3_Click(object sender, EventArgs e)
         {
             PopulateFlowPanel(cu.Selling, 2);
+            SetButtonsColor(button3);
+            if (panel4.Visible)
+                panel4.Visible = false;
         }
+
         /// <summary>
         /// saved items
         /// </summary>
@@ -182,7 +214,11 @@ namespace SaleMyStuffApp
         void Button6_Click(object sender, EventArgs e)
         {
             PopulateFlowPanel(cu.Saved, 3);
+            SetButtonsColor(button6);
+            if (panel4.Visible)
+                panel4.Visible = false;
         }
+
         /// <summary>
         /// Sell history
         /// </summary>
@@ -191,7 +227,9 @@ namespace SaleMyStuffApp
         void Button4_Click(object sender, EventArgs e)
         {
             PopulateHistory(4);
+            SetButtonsColor(button4);
         }
+
         /// <summary>
         /// Buy history
         /// </summary>
@@ -200,7 +238,9 @@ namespace SaleMyStuffApp
         void Button5_Click(object sender, EventArgs e)
         {
             PopulateHistory(5);
+            SetButtonsColor(button5);
         }
+
         /// <summary>
         /// settings...
         /// </summary>
@@ -210,7 +250,22 @@ namespace SaleMyStuffApp
         {
             Form3 form3 = new Form3(cu.Id, theme);
             form3.ShowDialog();
+            SetButtonsColor(button7);
+            if (panel4.Visible)
+                panel4.Visible = false;
         }
+
+        /// <summary>
+        /// History Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            SetButtonsColor(button8);
+            panel4.Visible = !panel4.Visible;
+        }
+
         /// <summary>
         /// Close button
         /// </summary>
@@ -241,7 +296,7 @@ namespace SaleMyStuffApp
                 ca.SetSelling(owner.CancelSelling(choosenItem.Id), owner.Id);
                 //add money to the olduser
                 decimal price = choosenItem.TempPrice == 0 ? choosenItem.Price : choosenItem.TempPrice;
-                owner.Money = owner.Money + price;
+                owner.Money += price;
                 ca.SetMoney(owner.Money, owner.Id);
                 //set notForSale
                 ca.SetState("NotForSale", choosenItem.Id);

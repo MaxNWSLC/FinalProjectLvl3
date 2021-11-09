@@ -12,9 +12,9 @@ namespace SaleMyStuffApp
         readonly Control[] buttons;
         readonly Control[] headers;
         readonly Control[] labels;
-        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat,
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat,
             Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left); 
-        readonly ThemeClass tempTheme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat,
+        readonly ThemeClass tempTheme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat,
             Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         readonly string path = @"Resources\Settings.txt";
@@ -34,7 +34,12 @@ namespace SaleMyStuffApp
             ApplyTheme();
             SetPanel();
             Preview();
+            button2.BackColor = theme.ButtonSelect;
+            if (theme.Dockstyle == DockStyle.Left)
+                button4.BackColor = theme.ButtonSelect;
+            else button5.BackColor = theme.ButtonSelect;
         }
+
         void ApplyTheme()
         {
             this.BackColor = theme.PrimaryBack;
@@ -58,6 +63,7 @@ namespace SaleMyStuffApp
             sidePanel.BackColor = theme.SecondaryBack;
             sidePanel.Dock = theme.Dockstyle;
         }
+
         /// <summary>
         /// Set the Panel Controls
         /// </summary>
@@ -88,24 +94,33 @@ namespace SaleMyStuffApp
             MessageBox.Show("Job Done!\nYou have to close and open  the App\nChanges to be aplied"
                 , "Settings Saved",MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
+
         private void Button2_Click(object sender, EventArgs e)
         {//appSettings
             SetPanel();
+            button2.BackColor = theme.ButtonSelect;
+            button3.BackColor = theme.ButtonBack;
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {//accSettings
             SetPanel(1);
+            button3.BackColor = theme.ButtonSelect;
+            button2.BackColor = theme.ButtonBack;
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {//left
             sidePanel.Dock = DockStyle.Left;
+            button4.BackColor = theme.ButtonSelect;
+            button5.BackColor = theme.ButtonBack;
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {//right
             sidePanel.Dock = DockStyle.Right;
+            button5.BackColor = theme.ButtonSelect;
+            button4.BackColor = theme.ButtonBack;
         }
         private void CloseForm_Click(object sender, EventArgs e)
         {//close

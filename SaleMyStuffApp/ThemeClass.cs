@@ -16,12 +16,13 @@ namespace SaleMyStuffApp
         Color textColor;
         Color buttonFront;
         Color buttonBack;
+        Color buttonSelect;
         Color headerFront;
         Color headerBack;
         DockStyle dockstyle;
 
-        public ThemeClass(string name, Color primaryBack, Color secondaryBack, Color textColor, 
-            Color buttonFront, Color buttonBack, Color headerFront, Color headerBack, DockStyle dockstyle)
+        public ThemeClass(string name, Color primaryBack, Color secondaryBack, Color textColor,
+            Color buttonFront, Color buttonBack, Color buttonSelect, Color headerFront, Color headerBack, DockStyle dockstyle)
         {
             this.name = name;
             this.primaryBack = primaryBack;
@@ -29,6 +30,7 @@ namespace SaleMyStuffApp
             this.textColor = textColor;
             this.buttonFront = buttonFront;
             this.buttonBack = buttonBack;
+            this.buttonSelect = buttonSelect;
             this.headerFront = headerFront;
             this.headerBack = headerBack;
             this.dockstyle = dockstyle;
@@ -43,6 +45,7 @@ namespace SaleMyStuffApp
         public DockStyle Dockstyle { get => dockstyle; set => dockstyle = value; }
         public Color HeaderBack { get => headerBack; set => headerBack = value; }
         public Color HeaderFront { get => headerFront; set => headerFront = value; }
+        public Color ButtonSelect { get => buttonSelect; set => buttonSelect = value; }
 
         public void Linen()
         {
@@ -52,6 +55,7 @@ namespace SaleMyStuffApp
             TextColor = Color.Black;
             ButtonFront = Color.Black;
             ButtonBack = Color.Wheat;
+            ButtonSelect = Color.Tan;
             HeaderFront = Color.Black;
             HeaderBack = Color.WhiteSmoke;
         }
@@ -63,6 +67,7 @@ namespace SaleMyStuffApp
             TextColor = Color.Gainsboro;
             ButtonFront = Color.WhiteSmoke;
             ButtonBack = Color.Gray;
+            ButtonSelect = Color.DimGray;
             HeaderFront = Color.Black;
             HeaderBack = Color.Gainsboro;
         }
@@ -74,6 +79,7 @@ namespace SaleMyStuffApp
             TextColor = Color.WhiteSmoke;
             ButtonFront = Color.WhiteSmoke;
             ButtonBack = Color.SeaGreen;
+            ButtonSelect = Color.CadetBlue;
             HeaderFront = Color.Black;
             HeaderBack = Color.WhiteSmoke;
         }
@@ -85,6 +91,7 @@ namespace SaleMyStuffApp
             TextColor = Color.SeaShell;
             ButtonFront = Color.WhiteSmoke;
             ButtonBack = Color.Tomato;
+            ButtonSelect = Color.Salmon;
             HeaderFront = Color.Black;
             HeaderBack = Color.WhiteSmoke;
         }
