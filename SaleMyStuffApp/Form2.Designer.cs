@@ -29,6 +29,7 @@ namespace SaleMyStuffApp
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,6 +48,8 @@ namespace SaleMyStuffApp
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.timerBuyBot = new System.Windows.Forms.Timer(this.components);
+            this.timerSellBot = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeForm)).BeginInit();
@@ -305,6 +308,18 @@ namespace SaleMyStuffApp
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1000, 700);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
+            // timerBuyBot
+            // 
+            this.timerBuyBot.Enabled = true;
+            this.timerBuyBot.Interval = 25000;
+            this.timerBuyBot.Tick += new System.EventHandler(this.TimerBuyBot_Tick);
+            // 
+            // timerSellBot
+            // 
+            this.timerSellBot.Enabled = true;
+            this.timerSellBot.Interval = 35000;
+            this.timerSellBot.Tick += new System.EventHandler(this.TimerSellBot_Tick);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 28F);
@@ -345,12 +360,14 @@ namespace SaleMyStuffApp
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label2;//needed to set it when money change
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox closeForm;
         private System.Windows.Forms.PictureBox appIco;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Timer timerBuyBot;
+        private System.Windows.Forms.Timer timerSellBot;
     }
 }

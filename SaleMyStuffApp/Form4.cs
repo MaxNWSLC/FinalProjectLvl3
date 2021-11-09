@@ -61,7 +61,7 @@ namespace SaleMyStuffApp
             {
                 cu.InventoryOut(ci.Id);
                 cu.AddSelling(ci.Id);
-                ca.SetState("Selling", ci.Id);
+                ca.SetState("ForSale", ci.Id);
                 ca.SetSelling(cu.Selling, cu.Id);
                 ca.SetInventory(cu.Inventory, cu.Id);
                 ca.SetTempPrice(price, ci.Id);
