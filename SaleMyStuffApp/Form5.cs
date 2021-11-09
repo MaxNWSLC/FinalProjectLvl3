@@ -7,7 +7,7 @@ namespace SaleMyStuffApp
     public partial class Form5 : Form
     {
         #region Init
-        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, 
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, 
             Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         readonly Control[] disables;
@@ -21,7 +21,7 @@ namespace SaleMyStuffApp
             InitializeComponent();
             theme = colorTheme;
             labels = new Control[] { label1, label2, label3, label4, label6, label7 };
-            strBoxes = new Control[] { LoginBox, nameBox, surnameBox, passBox1, passBox2 };
+            strBoxes = new Control[] { LoginBox, nameBox, surnameBox, passBox1, passBox2, panel2 };
             buttons = new Control[] { searchButton, CreateButton, CancelSellButton };
             disables = new Control[] { nameBox, passBox1, CreateButton, label6, label2 };
             hiders = new Control[] { passBox2, label3, label4, surnameBox };
@@ -44,7 +44,7 @@ namespace SaleMyStuffApp
             foreach (var item in strBoxes)
             {
                 item.BackColor = theme.HeaderBack;
-                item.ForeColor = theme.ButtonFront;
+                item.ForeColor = theme.HeaderFront;
             }
         }
         void SetPanel(string str)

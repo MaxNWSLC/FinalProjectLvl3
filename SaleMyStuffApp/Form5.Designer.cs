@@ -248,7 +248,7 @@ namespace SaleMyStuffApp
             // 
             // CreateButton
             // 
-            this.CreateButton.BackColor = System.Drawing.Color.Wheat;
+            this.CreateButton.BackColor = System.Drawing.Color.NavajoWhite;
             this.CreateButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.CreateButton.FlatAppearance.BorderSize = 0;
             this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

@@ -38,11 +38,15 @@ namespace SaleMyStuffApp
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.apPanel = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.themeName = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,19 +57,15 @@ namespace SaleMyStuffApp
             this.passBox2 = new System.Windows.Forms.TextBox();
             this.passBox1 = new System.Windows.Forms.TextBox();
             this.newPassLabel = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.sidePanel.SuspendLayout();
             this.apPanel.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,7 +121,7 @@ namespace SaleMyStuffApp
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel.Location = new System.Drawing.Point(0, 25);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(225, 775);
+            this.sidePanel.Size = new System.Drawing.Size(200, 775);
             this.sidePanel.TabIndex = 24;
             // 
             // button7
@@ -133,9 +133,9 @@ namespace SaleMyStuffApp
             this.button7.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.button7.Image = global::SaleMyStuffApp.Properties.Resources.smallcancel;
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(0, 681);
+            this.button7.Location = new System.Drawing.Point(0, 705);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(225, 94);
+            this.button7.Size = new System.Drawing.Size(200, 70);
             this.button7.TabIndex = 3;
             this.button7.Text = "Cancel";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -152,11 +152,11 @@ namespace SaleMyStuffApp
             this.button3.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.button3.Image = global::SaleMyStuffApp.Properties.Resources.acc;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 94);
+            this.button3.Location = new System.Drawing.Point(0, 75);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(225, 94);
+            this.button3.Size = new System.Drawing.Size(200, 75);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Acc Settings";
+            this.button3.Text = "Acc \r\nSettings";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.button3.UseVisualStyleBackColor = false;
@@ -173,7 +173,7 @@ namespace SaleMyStuffApp
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(225, 94);
+            this.button2.Size = new System.Drawing.Size(200, 75);
             this.button2.TabIndex = 1;
             this.button2.Text = "App Settings";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -195,10 +195,20 @@ namespace SaleMyStuffApp
             this.apPanel.Controls.Add(this.passBox1);
             this.apPanel.Controls.Add(this.newPassLabel);
             this.apPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.apPanel.Location = new System.Drawing.Point(225, 25);
+            this.apPanel.Location = new System.Drawing.Point(200, 25);
             this.apPanel.Name = "apPanel";
-            this.apPanel.Size = new System.Drawing.Size(975, 775);
+            this.apPanel.Size = new System.Drawing.Size(1000, 775);
             this.apPanel.TabIndex = 25;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Controls.Add(this.panel1);
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Location = new System.Drawing.Point(526, 81);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 175);
+            this.panel3.TabIndex = 36;
             // 
             // panel5
             // 
@@ -210,25 +220,31 @@ namespace SaleMyStuffApp
             this.panel5.Size = new System.Drawing.Size(123, 148);
             this.panel5.TabIndex = 38;
             // 
-            // panel4
+            // themeName
             // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.pictureBox1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 27);
-            this.panel4.TabIndex = 37;
+            this.themeName.AutoSize = true;
+            this.themeName.Location = new System.Drawing.Point(14, 9);
+            this.themeName.Name = "themeName";
+            this.themeName.Size = new System.Drawing.Size(81, 28);
+            this.themeName.TabIndex = 27;
+            this.themeName.Text = "Theme";
             // 
-            // panel3
+            // button9
             // 
-            this.panel3.Controls.Add(this.panel5);
-            this.panel3.Controls.Add(this.panel1);
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(526, 81);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 175);
-            this.panel3.TabIndex = 36;
+            this.button9.BackColor = System.Drawing.Color.Wheat;
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.button9.Image = global::SaleMyStuffApp.Properties.Resources.smallbuy;
+            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button9.Location = new System.Drawing.Point(4, 108);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(114, 36);
+            this.button9.TabIndex = 5;
+            this.button9.Text = "button";
+            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button9.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button9.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -241,14 +257,56 @@ namespace SaleMyStuffApp
             this.panel1.Size = new System.Drawing.Size(77, 148);
             this.panel1.TabIndex = 35;
             // 
-            // themeName
+            // button8
             // 
-            this.themeName.AutoSize = true;
-            this.themeName.Location = new System.Drawing.Point(14, 9);
-            this.themeName.Name = "themeName";
-            this.themeName.Size = new System.Drawing.Size(81, 28);
-            this.themeName.TabIndex = 27;
-            this.themeName.Text = "Theme";
+            this.button8.BackColor = System.Drawing.Color.Wheat;
+            this.button8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F);
+            this.button8.Image = global::SaleMyStuffApp.Properties.Resources.smallHistory;
+            this.button8.Location = new System.Drawing.Point(0, 31);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(77, 31);
+            this.button8.TabIndex = 40;
+            this.button8.Text = "button";
+            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.Wheat;
+            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button10.FlatAppearance.BorderSize = 0;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F);
+            this.button10.Image = global::SaleMyStuffApp.Properties.Resources.smallbuy;
+            this.button10.Location = new System.Drawing.Point(0, 0);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(77, 31);
+            this.button10.TabIndex = 39;
+            this.button10.Text = "button";
+            this.button10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button10.UseVisualStyleBackColor = false;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.pictureBox1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 27);
+            this.panel4.TabIndex = 37;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SaleMyStuffApp.Properties.Resources.smallclose;
+            this.pictureBox1.Location = new System.Drawing.Point(176, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(22, 22);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // button5
             // 
@@ -358,7 +416,7 @@ namespace SaleMyStuffApp
             this.passBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.passBox2.Name = "passBox2";
             this.passBox2.PasswordChar = '*';
-            this.passBox2.Size = new System.Drawing.Size(337, 34);
+            this.passBox2.Size = new System.Drawing.Size(362, 34);
             this.passBox2.TabIndex = 33;
             // 
             // passBox1
@@ -369,7 +427,7 @@ namespace SaleMyStuffApp
             this.passBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.passBox1.Name = "passBox1";
             this.passBox1.PasswordChar = '*';
-            this.passBox1.Size = new System.Drawing.Size(337, 34);
+            this.passBox1.Size = new System.Drawing.Size(362, 34);
             this.passBox1.TabIndex = 32;
             // 
             // newPassLabel
@@ -380,64 +438,6 @@ namespace SaleMyStuffApp
             this.newPassLabel.Size = new System.Drawing.Size(255, 28);
             this.newPassLabel.TabIndex = 31;
             this.newPassLabel.Text = "Choose a new password";
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.Wheat;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.button9.Image = global::SaleMyStuffApp.Properties.Resources.smallbuy;
-            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(4, 108);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(114, 36);
-            this.button9.TabIndex = 5;
-            this.button9.Text = "button";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button9.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button9.UseVisualStyleBackColor = false;
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.Wheat;
-            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F);
-            this.button10.Image = global::SaleMyStuffApp.Properties.Resources.smallbuy;
-            this.button10.Location = new System.Drawing.Point(0, 0);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(77, 31);
-            this.button10.TabIndex = 39;
-            this.button10.Text = "button";
-            this.button10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button10.UseVisualStyleBackColor = false;
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.Wheat;
-            this.button8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F);
-            this.button8.Image = global::SaleMyStuffApp.Properties.Resources.smallHistory;
-            this.button8.Location = new System.Drawing.Point(0, 31);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(77, 31);
-            this.button8.TabIndex = 40;
-            this.button8.Text = "button";
-            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button8.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SaleMyStuffApp.Properties.Resources.smallclose;
-            this.pictureBox1.Location = new System.Drawing.Point(176, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(22, 22);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // Form3
             // 
@@ -463,11 +463,11 @@ namespace SaleMyStuffApp
             this.sidePanel.ResumeLayout(false);
             this.apPanel.ResumeLayout(false);
             this.apPanel.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

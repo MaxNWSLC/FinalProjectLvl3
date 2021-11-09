@@ -410,9 +410,9 @@ namespace SaleMyStuffApp
         /// <summary>
         /// update the tempPrice
         /// </summary>
-        /// <param name="itemId"></param>
-        /// <param name="userId"></param>
-        public void SetTempPrice(decimal price, int uId)
+        /// <param name="price">new temporary price in decimal</param>
+        /// <param name="itemId">item to change price for</param>
+        public void SetTempPrice(decimal price, int itemId)
         {
             using (var Connection = new SQLiteConnection(ConnectionString))
             {
@@ -420,7 +420,7 @@ namespace SaleMyStuffApp
                 var command = Connection.CreateCommand();
                 command.CommandText = @"UPDATE itemsTable SET tempPrice = @newPrice 
                                         WHERE id = @id";
-                command.Parameters.AddWithValue("@id", uId);
+                command.Parameters.AddWithValue("@id", itemId);
                 command.Parameters.AddWithValue("@newPrice", price);
                 try
                 {
@@ -472,15 +472,47 @@ namespace SaleMyStuffApp
         /// Get the Items for Sale
         /// </summary>
         /// <returns>Array of ItemsClass Objects</returns>
-        public ItemsClass[] GetItemsForSale()
+        public ItemsClass[] GetItemsForSale(bool bot = false)
         {
             List<ItemsClass> result = new List<ItemsClass>();
             using (var Connection = new SQLiteConnection(ConnectionString))
             {
                 Connection.Open();
                 var command = Connection.CreateCommand();
-                command.CommandText = @"SELECT * FROM itemsTable WHERE state = @str";
-                command.Parameters.AddWithValue("@str", "Selling");
+                if (bot)
+                    command.CommandText = @"SELECT * FROM itemsTable WHERE state = @str
+                                        AND owner != 0";
+                else
+                    command.CommandText = @"SELECT * FROM itemsTable WHERE state = @str";
+                command.Parameters.AddWithValue("@str", "ForSale");
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new ItemsClass(id: reader.GetInt32(0),
+                                                name: reader.GetString(1),
+                                                price: reader.GetDecimal(2),
+                                                info: reader.GetString(3),
+                                                image: reader.GetString(4),
+                                                state: reader.GetString(5),
+                                                owner: reader.GetInt32(6),
+                                                tempPrice: reader.GetDecimal(7)));
+                    }
+                }
+                Connection.Close();
+            }
+            return result.ToArray();
+        }
+        public ItemsClass[] NotForSale()
+        {
+            List<ItemsClass> result = new List<ItemsClass>();
+            using (var Connection = new SQLiteConnection(ConnectionString))
+            {
+                Connection.Open();
+                var command = Connection.CreateCommand();
+                    command.CommandText = @"SELECT * FROM itemsTable WHERE state = @str
+                                        AND owner = 0";
+                command.Parameters.AddWithValue("@str", "NotForSale");
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())

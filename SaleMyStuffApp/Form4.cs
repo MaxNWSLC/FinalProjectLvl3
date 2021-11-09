@@ -6,7 +6,7 @@ namespace SaleMyStuffApp
 {
     public partial class Form4 : Form
     {
-        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, 
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, 
             Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
         readonly UsersClass cu;
@@ -61,7 +61,7 @@ namespace SaleMyStuffApp
             {
                 cu.InventoryOut(ci.Id);
                 cu.AddSelling(ci.Id);
-                ca.SetState("Selling", ci.Id);
+                ca.SetState("ForSale", ci.Id);
                 ca.SetSelling(cu.Selling, cu.Id);
                 ca.SetInventory(cu.Inventory, cu.Id);
                 ca.SetTempPrice(price, ci.Id);

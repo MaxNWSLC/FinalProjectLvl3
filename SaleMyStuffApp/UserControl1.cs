@@ -8,8 +8,8 @@ namespace SaleMyStuffApp
     {
         #region Init
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
-        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat,
-            Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, 
+            Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         readonly UsersClass cu;
         readonly ItemsClass ci;
         readonly History hs;
@@ -77,7 +77,7 @@ namespace SaleMyStuffApp
                     button2.Visible = false;
                     break;
                 case 3://saved items
-                    if (ci.State != "Selling")
+                    if (ci.State != "ForSale")
                         button1.Enabled = false;
                     button1.Text = "Buy";
                     button1.Click += ButtonBuy_Click;

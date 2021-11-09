@@ -74,7 +74,7 @@ namespace SaleMyStuffApp
             // 
             // CancelSellButton
             // 
-            this.CancelSellButton.BackColor = System.Drawing.Color.Wheat;
+            this.CancelSellButton.BackColor = System.Drawing.Color.Salmon;
             this.CancelSellButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.CancelSellButton.FlatAppearance.BorderSize = 0;
             this.CancelSellButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
