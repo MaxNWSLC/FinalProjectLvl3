@@ -95,6 +95,19 @@ namespace SaleMyStuffApp
             HeaderFront = Color.Black;
             HeaderBack = Color.WhiteSmoke;
         }
+
+        public void Blue()
+        {
+            Name = "Blue";
+            PrimaryBack = Color.FromArgb(98, 182, 203);
+            SecondaryBack = Color.FromArgb(143, 194, 224);
+            TextColor = Color.FromArgb(27, 73, 101);
+            ButtonFront = Color.FromArgb(190, 233, 232);
+            ButtonBack = Color.FromArgb(27, 73, 101);
+            ButtonSelect = Color.FromArgb(63, 150, 202);
+            HeaderFront = Color.FromArgb(27, 73, 101);
+            HeaderBack = Color.FromArgb(247, 252, 252);
+        }
         public DockStyle Left()
         {
             return Dockstyle = DockStyle.Left;

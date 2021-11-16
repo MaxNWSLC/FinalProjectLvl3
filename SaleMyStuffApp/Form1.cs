@@ -40,6 +40,9 @@ namespace SaleMyStuffApp
                 case "Orange":
                     theme.Orange();
                     break;
+                case "Blue":
+                    theme.Blue();
+                    break;
                 default:
                     theme.Linen();
                     break;
@@ -60,6 +63,7 @@ namespace SaleMyStuffApp
             button1.BackColor = theme.ButtonBack;
             button1.ForeColor = theme.ButtonFront;
         }
+
         /// <summary>
         /// login button
         /// </summary>

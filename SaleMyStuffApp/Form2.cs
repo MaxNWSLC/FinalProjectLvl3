@@ -28,12 +28,11 @@ namespace SaleMyStuffApp
         }
         void InitHelper()
         {
-            label1.Text = $"Hello {cu.FirstName}!({cu.Id})";
+            label1.Text = $"Hello {cu.FirstName}!";
             label2.Text = $"{cu.Money}£";
             if (cu.LastLogin == "0")
                 label3.Visible = false;
             label3.Text = $"Last Time Seen: {cu.LastLogin}";
-
         }
 
         /// <summary>
@@ -103,7 +102,7 @@ namespace SaleMyStuffApp
                 ItemsClass[] tempItemsArray = ca.GetItems(tempArray);
                 foreach (var item in tempItemsArray)
                 {
-                    var uc = new UserControl1(item, cu, theme, null, n);
+                    var uc = new UserControl1(item, cu, theme, null, n, tempItemsArray.Length);
                     flowLayoutPanel1.Controls.Add(uc);
                 }
             }
@@ -121,7 +120,7 @@ namespace SaleMyStuffApp
             {
                 if (item.Owner != cu.Id)
                 {
-                    var uc = new UserControl1(item, cu, theme);
+                    var uc = new UserControl1(item, cu, theme, null, 0, tempItemsArray.Length);
                     flowLayoutPanel1.Controls.Add(uc);
                 }
             }
@@ -146,7 +145,7 @@ namespace SaleMyStuffApp
             //populate the flowpanel with UserControls
             for (int i = 0; i < his.Length; i++)
             {
-                var zz = new UserControl1(hisItems[i], null, theme, his[i], n);
+                var zz = new UserControl1(hisItems[i], null, theme, his[i], n, his.Length);
                 flowLayoutPanel1.Controls.Add(zz);
             }
         }
@@ -192,7 +191,7 @@ namespace SaleMyStuffApp
             if (panel4.Visible)
                 panel4.Visible = false;
         }
-        
+
         /// <summary>
         /// user is selling
         /// </summary>

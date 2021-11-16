@@ -64,7 +64,7 @@ namespace SaleMyStuffApp
             // 
             this.infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.infoLabel.AutoSize = true;
-            this.infoLabel.Location = new System.Drawing.Point(481, 7);
+            this.infoLabel.Location = new System.Drawing.Point(479, 7);
             this.infoLabel.Name = "infoLabel";
             this.infoLabel.Size = new System.Drawing.Size(245, 28);
             this.infoLabel.TabIndex = 5;
@@ -134,7 +134,7 @@ namespace SaleMyStuffApp
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F);
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "UserControl1";
-            this.Size = new System.Drawing.Size(970, 165);
+            this.Size = new System.Drawing.Size(968, 165);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
