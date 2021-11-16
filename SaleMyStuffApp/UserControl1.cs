@@ -8,14 +8,14 @@ namespace SaleMyStuffApp
     {
         #region Init
         static readonly CatalogAcces ca = new CatalogAcces("Data Source = Resources/SellMyStuff.db");
-        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat, 
+        readonly ThemeClass theme = new ThemeClass("", Color.Wheat, Color.Wheat, Color.Wheat,
             Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, Color.Wheat, DockStyle.Left);
         readonly UsersClass cu;
         readonly ItemsClass ci;
         readonly History hs;
         readonly Control[] buttons;
         readonly Control[] labels;
-        public UserControl1(ItemsClass item, UsersClass user , ThemeClass colorTheme,History history = null, int buttonSet = 0)
+        public UserControl1(ItemsClass item, UsersClass user, ThemeClass colorTheme, History history = null, int buttonSet = 0, int n = 1)
         {
             InitializeComponent();
             cu = user;
@@ -26,6 +26,8 @@ namespace SaleMyStuffApp
             buttons = new Control[] { button1, button2 };
             InitHelper(buttonSet);
             ApplyTheme();
+            if (n < 4)
+                this.Width = 988;
         }
         void ApplyTheme()
         {
@@ -147,7 +149,7 @@ namespace SaleMyStuffApp
                 MessageBox.Show("No money?\nNo Honey!");
         }
 
-        void ButtonUnSave_Click(object sender, EventArgs e )
+        void ButtonUnSave_Click(object sender, EventArgs e)
         {
             string newSave = cu.UnSave(ci.Id);
             ca.SetSaved(newSave, cu.Id);
@@ -156,7 +158,7 @@ namespace SaleMyStuffApp
 
         void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (button2.Text == "Saved") 
+            if (button2.Text == "Saved")
             {
                 string newSave = cu.UnSave(ci.Id);
                 ca.SetSaved(newSave, cu.Id);

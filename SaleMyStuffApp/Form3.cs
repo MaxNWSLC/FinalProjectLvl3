@@ -88,7 +88,7 @@ namespace SaleMyStuffApp
         private void Button1_Click(object sender, EventArgs e)
         {
             int i = themeListBox.SelectedIndex;
-            string colour = 0 <= i && i < 4 ? themeListBox.SelectedItem.ToString() : theme.Name;
+            string colour = 0 <= i && i < 5 ? themeListBox.SelectedItem.ToString() : theme.Name;
             string side = sidePanel.Dock.ToString();
             File.WriteAllText(path, $"{colour},{side}");
             MessageBox.Show("Job Done!\nYou have to close and open  the App\nChanges to be aplied"
@@ -166,6 +166,9 @@ namespace SaleMyStuffApp
                 case "Orange":
                     tempTheme.Orange();
                     break;
+                case "Blue":
+                    tempTheme.Blue();
+                    break;
                 default:
                     tempTheme.Linen();
                     break;
@@ -175,6 +178,7 @@ namespace SaleMyStuffApp
             panel1.BackColor = tempTheme.SecondaryBack;
             panel4.BackColor = tempTheme.HeaderBack;
             themeName.Text = tempTheme.Name;
+            label3.ForeColor = tempTheme.HeaderFront;
             themeName.ForeColor = tempTheme.TextColor;
             button8.ForeColor = tempTheme.TextColor;
             button9.ForeColor = tempTheme.TextColor;

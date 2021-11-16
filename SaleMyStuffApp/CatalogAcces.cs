@@ -146,13 +146,19 @@ namespace SaleMyStuffApp
                 Connection.Open();
                 var command = Connection.CreateCommand();
                 command.CommandText = @"INSERT INTO 
-                usersTable ( login, password, dob, firstName, lastName ) 
-                VALUES ( @login, @pass, @dob, @firstName, @lastName )";
+                usersTable ( login, password, dob, firstName, lastName, inventory, selling, saved, lastLogin ) 
+                VALUES ( @login, @pass, @dob, @firstName, @lastName, @inventory, @selling, @saved, @lastLogin )";
                 command.Parameters.AddWithValue("@login", newUser.Login);
                 command.Parameters.AddWithValue("@pass", newUser.Pass);
                 command.Parameters.AddWithValue("@dob", newUser.Dob);
                 command.Parameters.AddWithValue("@firstName", newUser.FirstName);
                 command.Parameters.AddWithValue("@lastName", newUser.LastName);
+
+                command.Parameters.AddWithValue("@inventory", "");
+                command.Parameters.AddWithValue("@selling", "");
+                command.Parameters.AddWithValue("@saved", "");
+                command.Parameters.AddWithValue("@lastLogin", "");
+
                 try
                 {
                     int count = command.ExecuteNonQuery();

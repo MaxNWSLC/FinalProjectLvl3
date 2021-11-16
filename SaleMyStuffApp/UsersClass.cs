@@ -14,20 +14,7 @@
         string lastLogin;
         decimal money;
 
-        public UsersClass(int id, string login, string pass, string dob, string firstName, string lastName, string inventory, string selling, string saved, string lastLogin, decimal money)
-        {
-            this.id = id;
-            this.login = login;
-            this.pass = pass;
-            this.dob = dob;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.inventory = inventory;
-            this.selling = selling;
-            this.saved = saved;
-            this.lastLogin = lastLogin;
-            this.money = money;
-        }
+
         public UsersClass(int id, string firstName, string inventory, string selling, string saved, string lastLogin, decimal money)
         {
             this.id = id;
@@ -75,6 +62,7 @@
         public string Saved { get => saved; set => saved = value; }
         public string LastLogin { get => lastLogin; set => lastLogin = value; }
         public decimal Money { get => money; set => money = value; }
+
         #region Methods
         /// <summary>
         /// Ads int N(itemId) in the Saved string

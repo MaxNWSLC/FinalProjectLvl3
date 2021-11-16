@@ -57,6 +57,7 @@ namespace SaleMyStuffApp
             this.passBox2 = new System.Windows.Forms.TextBox();
             this.passBox1 = new System.Windows.Forms.TextBox();
             this.newPassLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -292,6 +293,7 @@ namespace SaleMyStuffApp
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.pictureBox1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
@@ -359,7 +361,8 @@ namespace SaleMyStuffApp
             "Linen(Default)",
             "Dark",
             "Lime",
-            "Orange"});
+            "Orange",
+            "Blue"});
             this.themeListBox.Location = new System.Drawing.Point(249, 81);
             this.themeListBox.Name = "themeListBox";
             this.themeListBox.Size = new System.Drawing.Size(162, 172);
@@ -439,6 +442,16 @@ namespace SaleMyStuffApp
             this.newPassLabel.TabIndex = 31;
             this.newPassLabel.Text = "Choose a new password";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F);
+            this.label3.Location = new System.Drawing.Point(6, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 16);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Preview";
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 28F);
@@ -468,6 +481,7 @@ namespace SaleMyStuffApp
             this.panel5.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -503,5 +517,6 @@ namespace SaleMyStuffApp
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label3;
     }
 }
